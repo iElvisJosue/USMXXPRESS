@@ -30,13 +30,14 @@
   height: 100%;
   padding: 10px;
   border-radius: 20px;
+  overflow: hidden;
 
   display: flex;
   gap: 5px;
 }
 .Navbar__Opciones--Item {
   position: relative;
-  height: 90px;
+  height: 200%;
   font-weight: bold;
   text-transform: uppercase;
   transition: var(--Transicion);
@@ -48,17 +49,17 @@
 }
 .Navbar__Opciones--Item:hover {
   cursor: pointer;
-  transform: translateY(-45px);
+  transform: translateY(-50%);
 }
 .Navbar__Opciones--Item:hover .Navbar__Opciones--Item--SVG {
-  /* opacity: 0; */
+  opacity: 0;
 }
 .Navbar__Opciones--Item:hover .Navbar__Opciones--Item--Texto {
   opacity: 1;
 }
 .Navbar__Opciones--Item--Texto {
   font-size: 16px;
-  /* opacity: 0; */
+  opacity: 0;
 }
 .Navbar__Opciones--Item--SVG,
 .Navbar__Opciones--Item--Texto {
@@ -85,20 +86,16 @@
 }
 @media (width <= 470px) {
   .Navbar {
-    max-height: 60px;
+    max-height: 50px;
+  }
+  .Navbar__Opciones {
+    padding: 5px;
   }
   .Navbar__Imagen {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
   }
   .Navbar__Opciones--Item--Texto {
     font-size: 10px;
-  }
-  .Navbar__Opciones--Item {
-    height: 80px;
-  }
-  .Navbar__Opciones--Item:hover {
-    cursor: pointer;
-    transform: translateY(-40px);
   }
 }

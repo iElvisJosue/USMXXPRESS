@@ -5,10 +5,10 @@ import { navbarOpciones } from "../helpers/NavbarOpciones";
 import { listaSVG } from "../helpers/SVGs";
 import { DiccionarNavbar } from "../translations/DiccionarNavbar";
 
+const { Idioma } = Astro.props;
+
 import "../styles/Navbar.css";
 import "../styles/SVGs.css";
-
-const { Idioma } = Astro.props;
 ---
 
 <nav class="Navbar" arial-label={DiccionarNavbar.navArial[Idioma]}>

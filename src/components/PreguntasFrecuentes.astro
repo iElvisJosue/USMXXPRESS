@@ -1,0 +1,73 @@
+---
+const { Idioma } = Astro.props;
+import { listaSVG } from "../helpers/SVGs";
+import { DiccionarioPreguntasFrecuentes } from "../translations/DiccionarioPreguntasFrecuentes";
+import { ListaDePreguntasFrecuentes } from "../helpers/ListaDePreguntasFrecuentes";
+
+// IMPORTAMOS LOS ESTILOS
+import "../styles/RastrearPaquete/PreguntasFrecuentes.css";
+---
+
+<section
+  class="PreguntasFrecuentes"
+  aria-label={DiccionarioPreguntasFrecuentes.AriaLabelSeccion[Idioma]}
+  itemscope
+  itemtype="https://schema.org/FAQPage"
+>
+  <p class="USMX__Subtitulos" itemprop="name">
+    {DiccionarioPreguntasFrecuentes.Titulo[Idioma]}
+  </p>
+  <ul class="PreguntasFrecuentes__Lista">
+    {
+      ListaDePreguntasFrecuentes["RASTREO"].map(
+        ({
+          SVG,
+          AltIcono,
+          TituloIcono,
+          Box,
+          TituloPregunta,
+          RespuestaPregunta,
+        }) => (
+          <li
+            class="PreguntasFrecuentes__Lista--Pregunta"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <details>
+              <summary class="PreguntasFrecuentes__Lista--Pregunta--Resumen">
+                <span
+                  class="PreguntasFrecuentes__Lista--Pregunta--Icono"
+                  aria-hidden="true"
+                >
+                  <div
+                    set:html={listaSVG({
+                      SVG,
+                      Alt: AltIcono[Idioma],
+                      Titulo: TituloIcono[Idioma],
+                      Box,
+                      Color: "Gris",
+                    })}
+                  />
+                </span>
+                <h3 class="USMX__Parrafos Izquierda Bold" itemprop="name">
+                  {TituloPregunta[Idioma]}
+                </h3>
+              </summary>
+              <div
+                class="PreguntasFrecuentes__Lista--Pregunta--Respuesta"
+                itemscope
+                itemprop="acceptedAnswer"
+                itemtype="https://schema.org/Answer"
+              >
+                <p class="USMX__Parrafos Izquierda" itemprop="text">
+                  {RespuestaPregunta[Idioma]}
+                </p>
+              </div>
+            </details>
+          </li>
+        )
+      )
+    }
+  </ul>
+</section>

@@ -48,6 +48,9 @@ body {
 li {
   list-style: none;
 }
+summary {
+  list-style: none;
+}
 .Bold {
   font-weight: bold;
 }
@@ -62,6 +65,9 @@ li {
 }
 .Verde {
   color: var(--ColorVerde);
+}
+.Mayusculas {
+  text-transform: uppercase;
 }
 /* @font-face {
   font-family: "Nunito";

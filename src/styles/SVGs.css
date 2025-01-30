@@ -11,8 +11,11 @@
 .SVG.Azul {
   fill: var(--ColorAzul);
 }
-/* @media (width <= 470px) {
+.SVG.Gris {
+  fill: var(--ColorGris);
+}
+@media (width <= 470px) {
   .SVG {
-    width: 20px;
+    width: 22px;
   }
-} */
+}

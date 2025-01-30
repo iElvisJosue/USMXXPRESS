@@ -1,6 +1,6 @@
 .USMX__Titulos {
   width: 100%;
-  font-size: clamp(32px, 4vw, 57px);
+  font-size: clamp(32px, 6vw, 57px);
   text-transform: uppercase;
   text-align: center;
   font-weight: bold;
@@ -21,6 +21,7 @@
   line-height: 1.6;
   text-align: center;
   text-transform: uppercase;
+  font-weight: bold;
 
   /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
@@ -34,7 +35,7 @@
 }
 .USMX__SemiSubtitulos {
   width: 100%;
-  font-size: clamp(18px, 4vw, 22px);
+  font-size: clamp(14px, 4vw, 22px);
   line-height: 1.6;
   text-align: center;
   text-transform: uppercase;
