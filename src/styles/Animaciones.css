@@ -1,4 +1,4 @@
-@keyframes animacionAparacion {
+/* @keyframes animacionAparacion {
   0% {
     transform: scale(0.8);
   }
@@ -15,4 +15,4 @@
     opacity: 1;
     transform: translateX(-50%) scale(1);
   }
-}
+} */

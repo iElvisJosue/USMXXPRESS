@@ -23,7 +23,7 @@
   border: 1px dashed var(--ColorAzulMarino);
   margin: 0 auto;
 
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
   animation-delay: 0.4s;
 }
@@ -39,7 +39,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
 }
 .Servicios__Detalles--Item.ServicioUno {
@@ -67,7 +67,7 @@
   background: var(--BgColor);
   padding: 20px;
   animation: animacionAparacion 1s forwards;
-  opacity: 0;
+  /* opacity: 0; */
   animation-delay: 0.2s;
 }
 .Servicios__Detalles--Item.ImagenServicio .Servicios__Detalles--Item--Imagen {

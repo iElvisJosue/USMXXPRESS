@@ -10,7 +10,7 @@
   position: relative;
   grid-column: span 1;
   animation: animacionAparacion 1s forwards;
-  opacity: 0;
+  /* opacity: 0; */
 
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@
 .Principal__Imagen--Imagen {
   height: auto;
   object-fit: contain;
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
   animation-delay: 0.2s;
 }
@@ -61,7 +61,7 @@
   align-items: center;
   gap: 10px;
 
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
   animation-delay: 0.6s;
 }

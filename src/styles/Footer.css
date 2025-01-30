@@ -24,7 +24,7 @@
 }
 .Footer__Slogan {
   grid-area: Slogan;
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
 
   flex-direction: column;
@@ -37,7 +37,7 @@
   border-radius: 50%;
   background-color: var(--ColorBlanco);
 
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
   animation-delay: 0.4s;
 }
@@ -48,7 +48,7 @@
 }
 .Footer__Soporte {
   grid-area: Soporte;
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
   animation-delay: 0.2s;
 
@@ -61,7 +61,7 @@
 }
 .Footer__Legales {
   grid-area: Legales;
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
   animation-delay: 0.4s;
   text-align: center;
@@ -71,7 +71,7 @@
 }
 .Footer__RedesSociales {
   grid-area: RedesSociales;
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
   animation-delay: 0.6s;
 

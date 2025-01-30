@@ -3,11 +3,12 @@
   margin-top: 10px;
   top: 0;
   left: 50%;
+  transform: translateX(-50%);
   height: 65px;
   max-height: 65px;
   overflow: hidden;
   z-index: 1000;
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion2 1s forwards;
 
   display: flex;
@@ -50,14 +51,14 @@
   transform: translateY(-45px);
 }
 .Navbar__Opciones--Item:hover .Navbar__Opciones--Item--SVG {
-  opacity: 0;
+  /* opacity: 0; */
 }
 .Navbar__Opciones--Item:hover .Navbar__Opciones--Item--Texto {
   opacity: 1;
 }
 .Navbar__Opciones--Item--Texto {
   font-size: 16px;
-  opacity: 0;
+  /* opacity: 0; */
 }
 .Navbar__Opciones--Item--SVG,
 .Navbar__Opciones--Item--Texto {

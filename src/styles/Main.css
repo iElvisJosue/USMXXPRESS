@@ -10,7 +10,7 @@
 .Main__Circulo {
   position: fixed;
   border-radius: 50%;
-  opacity: 0;
+  /* opacity: 0; */
   animation: animacionAparacion 1s forwards;
 
   z-index: -1;
