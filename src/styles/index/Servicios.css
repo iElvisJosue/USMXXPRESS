@@ -1,0 +1,151 @@
+.Servicios {
+  padding: 20px;
+  background-color: var(--ColorBlanco);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  z-index: 1;
+}
+.Servicios__Detalles {
+  display: grid;
+  grid-template-areas:
+    "ServicioUno ImagenServicio ImagenServicio ServicioDos"
+    "DivisorIzquierda ImagenServicio ImagenServicio DivisorDerecha"
+    "ServicioTres ImagenServicio ImagenServicio ServicioCuatro";
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.Servicios__Detalles--Divisor {
+  height: 100px;
+  background: none;
+  border: 1px dashed var(--ColorAzulMarino);
+  margin: 0 auto;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.4s;
+}
+.Servicios__Detalles--Divisor.Izquieda {
+  grid-area: DivisorIzquierda;
+}
+.Servicios__Detalles--Divisor.Derecha {
+  grid-area: DivisorDerecha;
+}
+.Servicios__Detalles--Item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+}
+.Servicios__Detalles--Item.ServicioUno {
+  grid-area: ServicioUno;
+}
+.Servicios__Detalles--Item.ServicioDos {
+  grid-area: ServicioDos;
+  animation-delay: 0.2s;
+}
+.Servicios__Detalles--Item.ServicioTres {
+  grid-area: ServicioTres;
+  animation-delay: 0.4s;
+}
+.Servicios__Detalles--Item.ServicioCuatro {
+  grid-area: ServicioCuatro;
+  animation-delay: 0.6s;
+}
+.Servicios__Detalles--Item.ImagenServicio {
+  grid-area: ImagenServicio;
+}
+.Servicios__Detalles--Item--Imagen {
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+  background: var(--BgColor);
+  padding: 20px;
+  animation: animacionAparacion 1s forwards;
+  opacity: 0;
+  animation-delay: 0.2s;
+}
+.Servicios__Detalles--Item.ImagenServicio .Servicios__Detalles--Item--Imagen {
+  width: 650px;
+  border-radius: 25px;
+  height: auto;
+}
+@media (width <= 1400px) {
+  .Servicios__Detalles--Item--Imagen {
+    width: 90px;
+    height: 90px;
+    padding: 15px;
+  }
+  .Servicios__Detalles--Item.ImagenServicio .Servicios__Detalles--Item--Imagen {
+    width: 550px;
+  }
+}
+@media (width <= 1200px) {
+  .Servicios__Detalles {
+    grid-template-areas:
+      "ServicioUno DivisorIzquierda ServicioDos"
+      "ImagenServicio ImagenServicio ImagenServicio"
+      "ServicioTres DivisorDerecha ServicioCuatro";
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .Servicios__Detalles--Divisor {
+    width: 200px;
+    height: 0;
+    margin: auto;
+  }
+  .Servicios__Detalles--Item--Imagen {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+  }
+  .Servicios__Detalles--Item.ImagenServicio .Servicios__Detalles--Item--Imagen {
+    width: 450px;
+  }
+}
+@media (width <= 700px) {
+  .Servicios__Detalles {
+    grid-template-areas:
+      "ServicioUno ServicioDos"
+      "ImagenServicio ImagenServicio"
+      "ServicioTres ServicioCuatro";
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .Servicios__Detalles--Item {
+    justify-content: flex-start;
+  }
+  .Servicios__Detalles--Divisor {
+    display: none;
+  }
+}
+@media (width <= 700px) {
+  .Servicios__Detalles {
+    grid-template-areas:
+      "ServicioUno"
+      "ServicioDos"
+      "ImagenServicio"
+      "ServicioTres"
+      "ServicioCuatro";
+    grid-template-columns: 1fr;
+  }
+  .Servicios__Detalles--Item--Imagen {
+    width: 70px;
+    height: 70px;
+  }
+  .Servicios__Detalles--Item.ImagenServicio .Servicios__Detalles--Item--Imagen {
+    width: 350px;
+  }
+}
+@media (width <= 400px) {
+  .Servicios__Detalles--Item--Imagen {
+    width: 60px;
+    height: 60px;
+  }
+  .Servicios__Detalles--Item.ImagenServicio .Servicios__Detalles--Item--Imagen {
+    width: 300px;
+  }
+}

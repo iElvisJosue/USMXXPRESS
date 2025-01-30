@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import { ListaDeConvencimiento } from "../../helpers/ListaPorqueElegirnos.astro";
+import { DiccionarioPorqueElegirnos } from "../../translations/DiccionarioPorqueElegirnos";
+import LetrasUSMX from "../LetrasUSMX.astro";
+import Divisor from "../Divisor.astro";
+
+const { Idioma } = Astro.props;
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/index/PorqueElegirnos.css";
+---
+
+<section class="PorqueElegirnos">
+  <Divisor />
+  <h1 class="USMX__Subtitulos">
+    {DiccionarioPorqueElegirnos[Idioma].Titulo}
+  </h1>
+  <p class="USMX__Parrafos">
+    {DiccionarioPorqueElegirnos[Idioma].DescripcionUno}
+    <LetrasUSMX />{DiccionarioPorqueElegirnos[Idioma].DescripcionDos}
+  </p>
+  <ul class="PorqueElegirnos__Detalles">
+    {
+      ListaDeConvencimiento[Idioma].map(({ srcImg, altImg, titulo, texto }) => (
+        <li class="PorqueElegirnos__Detalles--Item">
+          <Image
+            src={srcImg}
+            loading="lazy"
+            alt={altImg}
+            class="PorqueElegirnos__Detalles--Item--Imagen"
+          />
+          <h3 class="USMX__SemiSubtitulos">{titulo}</h3>
+          <p class="USMX__Parrafos">{texto}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

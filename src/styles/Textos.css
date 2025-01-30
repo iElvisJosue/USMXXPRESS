@@ -1,0 +1,103 @@
+.USMX__Titulos {
+  width: 100%;
+  font-size: clamp(32px, 4vw, 57px);
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.2s;
+}
+.USMX__Titulos.Derecha {
+  text-align: right;
+}
+.USMX__Titulos.Izquierda {
+  text-align: left;
+}
+.USMX__Subtitulos {
+  width: 100%;
+  font-size: clamp(22px, 4vw, 42px);
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.4s;
+}
+.USMX__Subtitulos.Derecha {
+  text-align: right;
+}
+.USMX__Subtitulos.Izquierda {
+  text-align: left;
+}
+.USMX__SemiSubtitulos {
+  width: 100%;
+  font-size: clamp(18px, 4vw, 22px);
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.4s;
+}
+.USMX__SemiSubtitulos.Derecha {
+  text-align: right;
+}
+.USMX__SemiSubtitulos.Izquierda {
+  text-align: left;
+}
+.USMX__Parrafos {
+  width: 100%;
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.6;
+  text-align: center;
+  font-weight: normal;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.4s;
+}
+.USMX__Parrafos.Derecha {
+  text-align: right;
+}
+.USMX__Parrafos.Izquierda {
+  text-align: left;
+}
+.USMX__Hipervinculos {
+  font-weight: bold;
+  color: var(--ColorAzulMarino) !important;
+  text-decoration: underline !important;
+  cursor: pointer;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.4s;
+}
+.USMX__Small {
+  width: 100%;
+  font-size: clamp(10px, 2vw, 15px);
+  line-height: 1.6;
+  text-align: center;
+  font-weight: normal;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.6s;
+}
+.USMX__Small.Derecha {
+  text-align: right;
+}
+.USMX__Small.Izquierda {
+  text-align: left;
+}
+@media (width <= 1000px) {
+  .USMX__Titulos.Derecha,
+  .USMX__Subtitulos.Derecha,
+  .USMX__Parrafos.Derecha,
+  .USMX__Small.Derecha {
+    text-align: center;
+  }
+}

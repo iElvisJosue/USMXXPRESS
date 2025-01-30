@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import { imagenes } from "../../helpers/Multimedia.astro";
+import { listaSVG } from "../../helpers/SVGs";
+import { DiccionarioPrincipal } from "../../translations/DiccionarioPrincipal";
+
+const { Idioma } = Astro.props;
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/index/Principal.css";
+---
+
+<div class="Principal">
+  <header class="Principal__Imagen">
+    <picture>
+      <Image
+        src={imagenes.RepresentacionRastreo.Imagen}
+        alt={DiccionarioPrincipal.altIconoSVG[Idioma]}
+        loading="eager"
+        class="Principal__Imagen--Imagen"
+      />
+    </picture>
+  </header>
+  <section class="Principal__Informacion">
+    <h1 class="USMX__Titulos Derecha">
+      {DiccionarioPrincipal.tituloPrincipalParteUno[Idioma]}
+      <br />
+      {DiccionarioPrincipal.tituloPrincipalParteDos[Idioma]}
+    </h1>
+    <p class="USMX__Parrafos Derecha">
+      {DiccionarioPrincipal.textoDetalles[Idioma]}
+    </p>
+    <a
+      href={Idioma === "es" ? "/es/RastrearPaquete" : "/en/TrackPackage"}
+      class="Principal__Informacion--Boton"
+      aria-label={DiccionarioPrincipal.botonAria[Idioma]}
+    >
+      {DiccionarioPrincipal.botonTexto[Idioma]}
+      <div
+        set:html={listaSVG({
+          SVG: "PAQUETE",
+          Alt: DiccionarioPrincipal.altIconoSVG[Idioma],
+          Titulo: DiccionarioPrincipal.tituloIconoSVG[Idioma],
+          Color: "Azul",
+        })}
+        class="Principal__Informacion--Boton--SVG"
+        aria-hidden="true"
+      />
+    </a>
+  </section>
+</div>

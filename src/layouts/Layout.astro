@@ -1,0 +1,15 @@
+---
+import Head from "../components/Head.astro";
+
+const { Idioma, Titulo } = Astro.props;
+
+import "../styles/Globales.css";
+---
+
+<!doctype html>
+<html lang={Idioma}>
+  <Head Idioma={Idioma} Titulo={Titulo} />
+  <body>
+    <slot />
+  </body>
+</html>

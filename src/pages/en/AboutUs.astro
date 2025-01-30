@@ -1,0 +1,11 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
+---
+
+<Layout Titulo={DiccionarioTitulos.tituloNosotros["en"]}>
+  <Navbar Idioma="en" />
+  <h1>ABOUT US</h1>
+</Layout>

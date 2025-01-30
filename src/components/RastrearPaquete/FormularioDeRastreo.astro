@@ -1,0 +1,257 @@
+---
+import { Image } from "astro:assets";
+import { listaSVG } from "../../helpers/SVGs";
+import { imagenes } from "../../helpers/Multimedia.astro";
+import { DiccionarioRastrearPaquete } from "../../translations/DiccionarioRastrearPaquete";
+
+const { Idioma } = Astro.props;
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/RastrearPaquete/FormularioDeRastreo.css";
+---
+
+<section
+  class="FormularioDeRastreo"
+  aria-label={DiccionarioRastrearPaquete.FormularioAriaLabel[Idioma]}
+>
+  <h2 class="USMX__Subtitulos">
+    {DiccionarioRastrearPaquete.Titulo[Idioma]}
+  </h2>
+  <div class="FormularioDeRastreo__Input">
+    <input
+      type="text"
+      class="FormularioDeRastreo__Input--Input"
+      placeholder={DiccionarioRastrearPaquete.InputPlaceholder[Idioma]}
+      aria-label={DiccionarioRastrearPaquete.InputAriaLabel[Idioma]}
+      name="numero_de_guia"
+      id="numero_de_guia"
+    />
+    <button
+      set:html={listaSVG({
+        SVG: "PAQUETE",
+        Color: "Blanco",
+      })}
+      class="FormularioDeRastreo__Input--SVG"
+      onclick="BuscarInformacionDeUnPaquete()"
+      title={DiccionarioRastrearPaquete.TituloBoton[Idioma]}
+    />
+  </div>
+  <article class="FormularioDeRastreo__Informacion">
+    <h2 class="USMX__Parrafos">
+      {DiccionarioRastrearPaquete.TextoDefectoFormulario[Idioma]}
+    </h2>
+    <Image
+      src={imagenes.InformacionDeRastreo.Imagen}
+      alt={DiccionarioRastrearPaquete.AltImgDefectoFormulario[Idioma]}
+      class="FormularioDeRastreo__Informacion--Imagen"
+      loading="eager"
+    />
+  </article>
+</section>
+
+<script client:load>
+  // const SERVIDOR_PETICIONES = "https://www.usmxxpress.online:4000/api";
+  const SERVIDOR_PETICIONES = "http://localhost:4000/api";
+  // OBTENEMOS EL CONTENEDOR DE LA INFORMACIÓN DE UN PAQUETE
+  const ContenedorDeInformacion = document.querySelector(
+    ".FormularioDeRastreo__Informacion"
+  );
+  // OBTENEMOS EL INPUT DE BUSQUEDA
+  const InputDeBusqueda = document.getElementById("numero_de_guia");
+  let IdiomaActual = "es";
+  // OBTENEMOS LA URL COMPLETA
+  if (window.location.href.includes("/en/")) {
+    IdiomaActual = "en";
+  }
+  // CREAMOS UN DICCIONARIO DE TEXTO POR IDIOMA
+  const DiccionarioDeTextos = {
+    BuscandoInformacion: {
+      es: "Buscando información de tu paquete...",
+      en: "Looking for package information...",
+    },
+    InformacionGeneral: {
+      es: "Información general",
+      en: "General information",
+    },
+    AltLogo: {
+      es: "Logo de USMX en el formulario de rastreo",
+      en: "USMX logo in the package tracking form",
+    },
+    Orden: {
+      es: "Orden",
+      en: "Order",
+    },
+    Destinatario: {
+      es: "Destinatario: ",
+      en: "Recipient: ",
+    },
+    Progreso: {
+      es: "Progreso del envío",
+      en: "Shipping progress",
+    },
+    AltImgBusqueda: {
+      es: "Ilustración de busqueda de paquetes",
+      en: "Package search illustration",
+    },
+    PaqueteNoEncontrado: {
+      es: "No encontramos tu paquete. Por favor, verifica el número de guía e ingresa uno válido.",
+      en: "We could not find your package. Please check the tracking number and enter a valid one.",
+    },
+    AltImgNoEncontrado: {
+      es: "Ilustración de paquetes no encontrados",
+      en: "Package not found illustration",
+    },
+    PaqueteError: {
+      es: "Ocurrió un error al buscar la información del paquete.",
+      en: "An error occurred while searching for package information.",
+    },
+    AltImgError: {
+      es: "Ilustración de error de busqueda de paquetes",
+      en: "Package search error illustration",
+    },
+  };
+
+  InputDeBusqueda.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && InputDeBusqueda.value) {
+      BuscarInformacionDeUnPaquete();
+    }
+  });
+  const BuscarInformacionDeUnPaquete = () => {
+    if (!InputDeBusqueda.value) return;
+    MostrarMensajeDeCarga();
+    BuscarPedidosPorNumeroDeGuia(InputDeBusqueda.value);
+  };
+  const BuscarPedidosPorNumeroDeGuia = async (Guia = "") => {
+    try {
+      // Realizar la solicitud fetch
+      const res = await fetch(
+        `${SERVIDOR_PETICIONES}/pedidos/BuscarPedidoPorNumeroDeGuia/${Guia}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await res.json();
+      if (data.InformacionGeneral) {
+        MostrarInformacionDeUnPaquete(data);
+      } else {
+        MostrarInformacionNoEncontrada();
+      }
+    } catch (error) {
+      MostrarMensajeDeError();
+    }
+  };
+  const MostrarMensajeDeCarga = () => {
+    ContenedorDeInformacion.innerHTML = `
+    <p class="USMX__Parrafos">${DiccionarioDeTextos.BuscandoInformacion[IdiomaActual]}</p>
+    <Image
+      src="/public/BuscandoPaquete.png"
+      alt=${DiccionarioDeTextos.AltImgBusqueda[IdiomaActual]}
+      class="FormularioDeRastreo__Informacion--Imagen"
+      loading="eager"
+    />
+  `;
+  };
+  const MostrarInformacionDeUnPaquete = (InfPaquete) => {
+    const { InformacionGeneral, MovimientosDelPedido } = InfPaquete;
+    ContenedorDeInformacion.innerHTML = "";
+    ContenedorDeInformacion.innerHTML = `
+    <hr class="Divisor" />
+      <h3 class="USMX__SemiSubtitulos">${DiccionarioDeTextos.InformacionGeneral[IdiomaActual]}</h3>
+    <div class="FormularioDeRastreo__Informacion--Encabezado">
+      <Image
+        src="https://www.usmxxpress.online:4000/Imagenes/LogoSistema2991096552.png"
+        alt=${DiccionarioDeTextos.AltLogo[IdiomaActual]}
+        class="FormularioDeRastreo__Informacion--Encabezado--Imagen"
+        loading="eager"
+      />
+      <span class="FormularioDeRastreo__Informacion--Encabezado--Titulo">
+        <p class="USMX__Parrafos Izquierda Bold">USMX Express</p>
+        <small class="USMX__Small Azul Bold">${InformacionGeneral.GuiaPedido}</small>
+      </span>
+      <p class="USMX__Parrafos Derecha Bold DerechaOrden">
+        ${DiccionarioDeTextos.Orden[IdiomaActual]} <b class="Azul">#${InformacionGeneral.idPedido}</b>
+      </p>
+    </div>
+    <div class="FormularioDeRastreo__Informacion--Estados">
+      <h3 class="USMX__SemiSubtitulos Izquierda">${InformacionGeneral.ProductoPedido}</h3>
+      <p class="USMX__Parrafos Izquierda FechaEntrega Gris">
+       ${DiccionarioDeTextos.Destinatario[IdiomaActual]} <b>${InformacionGeneral.NombreDestinatario} ${InformacionGeneral.ApellidosDestinatario}</b>
+      </p>
+    </div>
+    <hr class="Divisor" />
+    <div class="FomrularioDeRastreo__Informacion--Progreso">
+      <h3 class="USMX__SemiSubtitulos">${DiccionarioDeTextos.Progreso[IdiomaActual]}</h3>
+    </div>
+    <ul class="FormularioDeRastreo__Informacion--Movimientos">
+  ${MovimientosDelPedido.map(
+    ({ FechaCreacionUnion, HoraCreacionUnion, DetallesMovimiento }, index) => `
+    <li class="FormularioDeRastreo__Informacion--Movimientos--Movimiento">
+      <p class="USMX__Parrafos Bold IzquierdaMovimiento">
+        ${FormatearFecha(FechaCreacionUnion.slice(0, 10), HoraCreacionUnion)}
+        ${index === 0 ? `<small class="USMX__Small Actual">Actual</small>` : ""}
+      </p>
+      <p class="USMX__Parrafos Bold Gris IzquierdaMovimiento">
+        ${DetallesMovimiento}
+      </p>
+    </li>`
+  ).join("")}
+</ul>
+    `;
+  };
+  const MostrarInformacionNoEncontrada = () => {
+    ContenedorDeInformacion.innerHTML = `
+        <p class="USMX__Parrafos Rojo">
+        ${DiccionarioDeTextos.PaqueteNoEncontrado[IdiomaActual]}
+      </p>
+      <Image
+        src="/public/PaqueteNoEncontrado.png"
+        alt=${DiccionarioDeTextos.AltImgNoEncontrado[IdiomaActual]}
+        class="FormularioDeRastreo__Informacion--Imagen"
+        loading="eager"
+      />`;
+  };
+  const MostrarMensajeDeError = () => {
+    ContenedorDeInformacion.innerHTML = `
+      <p class="USMX__Parrafos Rojo">${DiccionarioDeTextos.PaqueteError[IdiomaActual]}</p>
+      <Image
+        src="/public/PaqueteError.png"
+        alt=${DiccionarioDeTextos.AltImgError[IdiomaActual]}
+        class="FormularioDeRastreo__Informacion--Imagen"
+        loading="eager"
+      />
+      `;
+  };
+  const FormatearFecha = (Fecha, Hora) => {
+    const FechaJuntada = `${Fecha}T${Hora}`;
+
+    // Crear un objeto Date
+    const NuevaFecha = new Date(FechaJuntada);
+
+    // Opciones de formato
+    const Opciones = {
+      month: "long", // Nombre completo del mes
+      day: "2-digit", // Día con dos dígitos
+      year: "numeric", // Año con cuatro dígitos
+      hour: "2-digit", // Hora con dos dígitos
+      minute: "2-digit", // Minutos con dos dígitos
+      hour12: true, // Usar formato de 12 horas (AM/PM)
+    };
+
+    // Crear el formateador
+    const Formateador = new Intl.DateTimeFormat("es-ES", Opciones);
+
+    // Formatear la fecha
+    return Formateador.format(NuevaFecha);
+  };
+  // OBTENEMOS LOS PARAMETROS DE LA URL
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  const { GuiaPedido, OrderGuide } = params;
+  // SI TENEMOS UNA GUÍA ENVIADA POR PARÁMETRO, BUSCAMOS EL PAQUETE
+  if (GuiaPedido || OrderGuide) {
+    BuscarPedidosPorNumeroDeGuia(GuiaPedido || OrderGuide);
+  }
+</script>

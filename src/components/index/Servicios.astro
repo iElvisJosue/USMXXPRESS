@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import Divisor from "../Divisor.astro";
+import { ListaDeServiciosActuales } from "../../helpers/ListaDeServicios.astro";
+import {DiccionarioServicios} from "../../translations/DiccionarioServicios";
+
+const { Idioma } = Astro.props;
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/index/Servicios.css";
+---
+
+<section class="Servicios">
+  <Divisor />
+  <h1 class="USMX__Subtitulos">{DiccionarioServicios.Titulo[Idioma]}</h1>
+  <p class="USMX__Parrafos">
+    {DiccionarioServicios.Descripcion[Idioma]}
+  </p>
+  <ul class="Servicios__Detalles">
+    <hr class="Servicios__Detalles--Divisor DivisorIzquierda">
+    <hr class="Servicios__Detalles--Divisor DivisorDerecha">
+    {
+      ListaDeServiciosActuales[Idioma].map(
+        ({
+          Nombre,
+          Descripcion,
+          Imagen,
+          AltImagen,
+          GridArea,
+          EsImagenPrincipal,
+        }) => (
+          <li class={`Servicios__Detalles--Item ${GridArea}`}>
+            <Image
+            src={Imagen}
+            loading="lazy"
+            alt={AltImagen}
+            class="Servicios__Detalles--Item--Imagen"
+            />
+            {
+              !EsImagenPrincipal && (
+              <h3 class="USMX__SemiSubtitulos">{Nombre}</h3>
+              <p class="USMX__Parrafos">{Descripcion}</p>
+              )
+            }
+            
+          </li>
+        )
+      )
+    }
+  </ul>
+  <picture class="Servicios__Banner"></picture>
+</section>

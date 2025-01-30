@@ -1,0 +1,109 @@
+/* IMPORTAMOS LAS ANIMACIONES */
+@import url("./Textos.css");
+@import url("./Animaciones.css");
+
+/* IMPORTAMOS LA FUENTE */
+@font-face {
+  font-family: "Nunito";
+  src: url("../assets/Fuentes/Nunito.ttf") format("truetype");
+}
+:root {
+  --BgColor: #ecf0f1;
+  --ColorAzulMarino: #2c3e50;
+  --ColorBlanco: #ffffff;
+  --ColorNegro: #000000;
+  --ColorRojo: #e74c3c;
+  --ColorAzul: #3498db;
+  --ColorVerde: #2ecc71;
+  --ColorGris: #adadad;
+  --Transicion: 0.5s ease all;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  color: var(--ColorAzulMarino);
+  transition: var(--Transicion);
+}
+::-webkit-scrollbar {
+  width: 12px; /* Ancho del scroll */
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--ColorAzulMarino); /* Color del scroll thumb */
+}
+::-webkit-scrollbar-track {
+  background-color: var(--BgColor); /* Color del track */
+}
+html {
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+}
+body {
+  position: relative;
+  background-color: var(--BgColor);
+}
+li {
+  list-style: none;
+}
+.Bold {
+  font-weight: bold;
+}
+.Azul {
+  color: var(--ColorAzul);
+}
+.Gris {
+  color: var(--ColorGris);
+}
+.Rojo {
+  color: var(--ColorRojo);
+}
+.Verde {
+  color: var(--ColorVerde);
+}
+/* @font-face {
+  font-family: "Nunito";
+  src: url("../assets/Fuentes/Nunito.ttf") format("truetype");
+}
+:root {
+  --BgColor: #ecf0f1;
+  --ColorAzulMarino: #794201;
+  --ColorAzulMarinoHover: #3498db;
+  --ColorBlanco: #ffffff;
+  --ColorNegro: #000000;
+  --ColorAmarillo: #ffc825;
+  --ColorNaranja: #ff9000;
+  --Transicion: 0.5s ease all;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  font-size: 10px;
+  color: var(--ColorAzulMarino);
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--ColorAzulMarino); 
+}
+::-webkit-scrollbar-track {
+  background-color: var(--BgColor); 
+}
+html {
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+}
+body {
+  position: relative;
+  background-color: var(--BgColor);
+}
+li {
+  list-style: none;
+} */

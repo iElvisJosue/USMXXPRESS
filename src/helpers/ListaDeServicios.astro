@@ -1,0 +1,91 @@
+---
+import { imagenes } from "./Multimedia.astro";
+
+export const ListaDeServiciosActuales = {
+  es: [
+    {
+      Nombre: "Entrega a domicilio 🏠🚚",
+      Descripcion:
+        "Envío rápido y seguro de paquetes a tu hogar o negocio, con comodidad y puntualidad garantizadas.",
+      Imagen: imagenes.EntregaDomicilio.Imagen,
+      AltImagen:
+        "Entrega de paquetes a domicilio con servicio confiable y rápido",
+      GridArea: "ServicioUno",
+    },
+    {
+      Nombre: "Entrega internacional 🌍🚚",
+      Descripcion:
+        "Envíos internacionales seguros y puntuales de Estados Unidos a México.",
+      Imagen: imagenes.EntregaInternacional.Imagen,
+      AltImagen: "Envío de paquetes internacionales de forma segura y rápida",
+      GridArea: "ServicioDos",
+    },
+    {
+      Imagen: imagenes.ServicioPaqueteria.Imagen,
+      AltImagen: "Imagen de servicio de paquetería",
+      GridArea: "ImagenServicio",
+      EsImagenPrincipal: true,
+    },
+    {
+      Nombre: "Entrega programada 📅🚚",
+      Descripcion:
+        "Planifica la entrega de tus paquetes con fecha y hora a tu medida, con mayor flexibilidad.",
+      Imagen: imagenes.EntregaProgramada.Imagen,
+      AltImagen:
+        "Entrega de paquetes programada para mayor flexibilidad y comodidad",
+      GridArea: "ServicioTres",
+    },
+    {
+      Nombre: "Entrega segura 🔒🚚",
+      Descripcion:
+        "Garantizamos que tus paquetes lleguen en perfectas condiciones con nuestro servicio de entrega segura.",
+      Imagen: imagenes.EntregaSegura.Imagen,
+      AltImagen:
+        "Servicio de entrega segura con protección adicional para tus paquetes",
+      GridArea: "ServicioCuatro",
+    },
+  ],
+  en: [
+    {
+      Nombre: "Home Delivery 🏠🚚",
+      Descripcion:
+        "Fast and secure delivery of packages to your home or business, ensuring comfort and punctuality.",
+      Imagen: imagenes.EntregaDomicilio.Imagen,
+      AltImagen: "Home delivery service with reliable and fast delivery",
+      GridArea: "ServicioUno",
+    },
+    {
+      Nombre: "International Delivery 🌍🚚",
+      Descripcion:
+        "Safe and timely international shipments from the United States to Mexico.",
+      Imagen: imagenes.EntregaInternacional.Imagen,
+      AltImagen: "International package delivery with safe and fast service",
+      GridArea: "ServicioDos",
+    },
+    {
+      Nombre: "Scheduled Delivery 📅🚚",
+      Descripcion:
+        "Schedule your package delivery with customizable date and time for added flexibility.",
+      Imagen: imagenes.EntregaProgramada.Imagen,
+      AltImagen:
+        "Scheduled package delivery for greater flexibility and convenience",
+      GridArea: "ServicioTres",
+    },
+    {
+      Nombre: "Secure Delivery 🔒🚚",
+      Descripcion:
+        "We ensure your packages arrive in perfect condition with our secure delivery service.",
+      Imagen: imagenes.EntregaSegura.Imagen,
+      AltImagen:
+        "Secure delivery service with extra protection for your packages",
+      GridArea: "ServicioCuatro",
+    },
+    {
+      Imagen: imagenes.ServicioPaqueteria.Imagen,
+      AltImagen: "Package delivery service image",
+      GridArea: "ImagenServicio",
+      EsImagenPrincipal: true,
+    },
+  ],
+};
+---

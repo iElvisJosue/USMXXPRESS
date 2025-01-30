@@ -1,0 +1,111 @@
+---
+import { Image } from "astro:assets";
+import { imagenes } from "../helpers/Multimedia.astro";
+import { listaSVG } from "../helpers/SVGs";
+import { ListaRedesSociales } from "../helpers/ListaRedesSociales";
+import { DiccionarioFooter } from "../translations/DiccionarioFooter";
+const { Idioma } = Astro.props;
+
+// IMPORTAMOS LOS ESTILOS
+import "../styles/Footer.css";
+---
+
+<footer class="Footer" role="contentinfo">
+  <div class="Footer__Slogan">
+    <h2 class="USMX__Subtitulos Izquierda SloganTexto">
+      {DiccionarioFooter[Idioma].SloganParteUno}
+      <br />
+      {DiccionarioFooter[Idioma].SloganParteDos}
+      <br />
+      {DiccionarioFooter[Idioma].SloganParteTres}
+    </h2>
+    <span class="Footer__Slogan--Detalles">
+      <Image
+        src={imagenes.USMX.Imagen}
+        alt={DiccionarioFooter[Idioma].AltImage}
+        loading="lazy"
+      />
+      <b class="USMX__SemiSubtitulos Izquierda SloganTexto"
+        >{DiccionarioFooter[Idioma].USMXExpress}</b
+      >
+    </span>
+    <p class="USMX__Parrafos Izquierda SloganTexto">
+      {DiccionarioFooter[Idioma].Derechos}
+    </p>
+  </div>
+  <div class="Footer__Soporte">
+    <h2 class="USMX__SemiSubtitulos Izquierda">
+      {DiccionarioFooter[Idioma].SoporteTitulo}
+    </h2>
+    <p class="USMX__Parrafos Izquierda">
+      {DiccionarioFooter[Idioma].SoporteParteUno}<a
+        href="#"
+        class="USMX__Hipervinculos"
+        aria-label={DiccionarioFooter[Idioma].SoporteAriaLabelContactanos}
+        >{DiccionarioFooter[Idioma].SoporteParteDos}</a
+      >
+      {DiccionarioFooter[Idioma].SoporteParteTres}<a
+        href="#"
+        class="USMX__Hipervinculos"
+        aria-label={DiccionarioFooter[Idioma].SoporteAriaLabelCentroAyuda}
+        >{DiccionarioFooter[Idioma].SoporteParteCuatro}</a
+      >.
+    </p>
+    <p class="USMX__Parrafos Izquierda Mensaje">
+      {DiccionarioFooter[Idioma].SoporteParteCinco}<a
+        href="tel:123456789"
+        class="USMX__Hipervinculos"
+        aria-label={DiccionarioFooter[Idioma].SoporteAriaLabelLlamar}
+        >{DiccionarioFooter[Idioma].SoporteNumero}</a
+      >
+      {DiccionarioFooter[Idioma].SoporteParteSeis}<a
+        href="mailto:correo@example.com"
+        class="USMX__Hipervinculos"
+        aria-label={DiccionarioFooter[Idioma].SoporteAriaLabelCorreo}
+        >{DiccionarioFooter[Idioma].SoporteCorreo}</a
+      >.
+    </p>
+  </div>
+  <div class="Footer__Legales">
+    <a
+      href="#"
+      class="USMX__Hipervinculos"
+      aria-label={DiccionarioFooter[Idioma].LegalesAriaLabelCondicionesDeUso}
+      >{DiccionarioFooter[Idioma].LegalesParteUno}</a
+    >
+    <a
+      href="#"
+      class="USMX__Hipervinculos"
+      aria-label={DiccionarioFooter[Idioma]
+        .LegalesAriaLabelPoliticasDePrivacidad}
+      >{DiccionarioFooter[Idioma].LegalesParteDos}</a
+    >
+  </div>
+  <div class="Footer__RedesSociales">
+    <h2 class="USMX__SemiSubtitulos">
+      {DiccionarioFooter[Idioma].RedesSocialesTitulo}
+    </h2>
+    <ul class="Footer__RedesSociales--Detalles">
+      {
+        ListaRedesSociales[Idioma].map(
+          ({ ArialLabel, Titulo, URL, SVG, Alt, Tamaño }) => (
+            <li class="Footer__RedesSociales--Detalles--Item" role="listitem">
+              <a href={URL} aria-label={ArialLabel} title={Titulo}>
+                <div
+                  set:html={listaSVG({
+                    SVG,
+                    Alt,
+                    Titulo,
+                    Tamaño,
+                  })}
+                  class="Footer__RedesSociales--Detalles--Item--SVG"
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
+          )
+        )
+      }
+    </ul>
+  </div>
+</footer>

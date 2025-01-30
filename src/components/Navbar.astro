@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import { imagenes } from "../helpers/Multimedia.astro";
+import { navbarOpciones } from "../helpers/NavbarOpciones";
+import { listaSVG } from "../helpers/SVGs";
+import { DiccionarNavbar } from "../translations/DiccionarNavbar";
+
+import "../styles/Navbar.css";
+import "../styles/SVGs.css";
+
+const { Idioma } = Astro.props;
+---
+
+<nav class="Navbar" arial-label={DiccionarNavbar.navArial[Idioma]}>
+  <a
+    href={Idioma === "es" ? "/es" : "/en"}
+    title={DiccionarNavbar.botonHome[Idioma]}
+  >
+    <Image
+      src={imagenes.USMX.Imagen}
+      alt={DiccionarNavbar.logoAlt[Idioma]}
+      class="Navbar__Imagen"
+      loading="eager"
+    />
+  </a>
+  <ul class="Navbar__Opciones">
+    {
+      navbarOpciones[Idioma].map(
+        ({ URL, SVG, Alt, Tamaño, NombreSeccion, Titulo }) => (
+          <li role="listitem">
+            <a
+              class="Navbar__Opciones--Item"
+              href={URL}
+              title={`${DiccionarNavbar.direccionSeccion[Idioma]} ${NombreSeccion}`}
+            >
+              <div
+                set:html={listaSVG({
+                  SVG,
+                  Alt,
+                  Tamaño,
+                  Titulo,
+                })}
+                class="Navbar__Opciones--Item--SVG"
+                aria-hidden="true"
+              />
+              <p class="Navbar__Opciones--Item--Texto">{NombreSeccion}</p>
+            </a>
+          </li>
+        )
+      )
+    }
+  </ul>
+  <a
+    href={Idioma === "es" ? "/en" : "/es"}
+    title={DiccionarNavbar.tituloCambiarIdioma[Idioma]}
+    aria-label={DiccionarNavbar.tituloCambiarIdioma[Idioma]}
+  >
+    <Image
+      src={Idioma === "es"
+        ? imagenes.logoIdiomaEN.Imagen
+        : imagenes.logoIdiomaES.Imagen}
+      alt={DiccionarNavbar.altImagenIdioma[Idioma]}
+      class="Navbar__Imagen"
+      loading="eager"
+    />
+  </a>
+</nav>

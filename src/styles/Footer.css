@@ -1,0 +1,129 @@
+.Footer {
+  padding: 10px;
+
+  display: grid;
+  grid-template-areas:
+    "Slogan Slogan Soporte Soporte RedesSociales"
+    "Slogan Slogan Soporte Soporte RedesSociales"
+    "Slogan Slogan Legales Legales RedesSociales";
+  grid-template-columns: 1fr 1fr 1fr 1fr 120px;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+}
+.Footer__Slogan,
+.Footer__Soporte,
+.Footer__Legales,
+.Footer__RedesSociales {
+  border-radius: 25px;
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
+  background-color: var(--ColorBlanco);
+  padding: 20px;
+
+  display: flex;
+  gap: 10px;
+}
+.Footer__Slogan {
+  grid-area: Slogan;
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.Footer__Slogan img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--ColorBlanco);
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.4s;
+}
+.Footer__Slogan--Detalles {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.Footer__Soporte {
+  grid-area: Soporte;
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.2s;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.Mensaje {
+  margin-top: 40px;
+}
+.Footer__Legales {
+  grid-area: Legales;
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.4s;
+  text-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+.Footer__RedesSociales {
+  grid-area: RedesSociales;
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.6s;
+
+  flex-direction: column;
+  align-items: center;
+}
+.Footer__RedesSociales--Detalles {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.Footer__RedesSociales--Detalles--Item--SVG:hover {
+  transform: scale(1.4);
+}
+@media (width <= 700px) {
+  .Footer {
+    grid-template-areas:
+      "Slogan Soporte"
+      "Slogan Soporte"
+      "Slogan Legales"
+      "RedesSociales RedesSociales";
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
+  }
+  .Footer__RedesSociales--Detalles {
+    flex-direction: row;
+  }
+  .Footer__Slogan img {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (width <= 500px) {
+  .Footer {
+    grid-template-areas:
+      "Slogan"
+      "Soporte"
+      " Legales"
+      "RedesSociales";
+    grid-template-columns: 1fr;
+  }
+  .Footer__Slogan {
+    align-items: center;
+  }
+  .Footer__Slogan--Detalles {
+    flex-direction: column;
+  }
+  .SloganTexto {
+    text-align: center !important;
+  }
+}

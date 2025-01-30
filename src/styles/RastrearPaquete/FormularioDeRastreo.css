@@ -1,0 +1,172 @@
+.FormularioDeRastreo {
+  min-height: calc(100vh - 85px);
+  overflow: hidden;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.FormularioDeRastreo__Input {
+  position: relative;
+  display: flex;
+  width: 500px;
+  height: 65px;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.2s;
+}
+.FormularioDeRastreo__Input--Input {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: var(--ColorBlanco);
+  padding: 10px 85px 10px 20px;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.FormularioDeRastreo__Input--Input:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px rgba(52, 152, 219, 0.5);
+}
+.FormularioDeRastreo__Input--Input::placeholder {
+  color: var(--BgColor);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.FormularioDeRastreo__Input--SVG {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65px;
+  height: 100%;
+  background-color: var(--ColorAzul);
+  border: none;
+  cursor: pointer;
+  border-radius: 0px 30px 30px 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.FormularioDeRastreo__Informacion {
+  width: 1000px;
+  background-color: var(--ColorBlanco);
+  border-radius: 25px;
+  padding: 20px;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.4s;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.FormularioDeRastreo__Informacion--Imagen {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.6s;
+}
+.FormularioDeRastreo__Informacion--Encabezado {
+  display: flex;
+  gap: 10px;
+}
+.FormularioDeRastreo__Informacion--Encabezado--Imagen {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.6s;
+}
+.FormularioDeRastreo__Informacion--Encabezado--Titulo {
+  width: 100%;
+}
+.Divisor {
+  width: 65px;
+  height: 5px;
+  border: none;
+  border-radius: 5px;
+  background: var(--ColorRojo);
+  opacity: 0;
+  margin: 0 auto;
+
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.6s;
+}
+.DerechaOrden {
+  text-align: right !important;
+}
+.IzquierdaMovimiento {
+  text-align: left !important;
+}
+.Actual {
+  background-color: var(--ColorVerde);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.6s;
+}
+.FormularioDeRastreo__Informacion--Movimientos {
+  padding-left: 35px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.FormularioDeRastreo__Informacion--Movimientos--Movimiento {
+  position: relative;
+}
+.FormularioDeRastreo__Informacion--Movimientos--Movimiento::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--BgColor);
+  top: 5px;
+  left: -35px;
+
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+  animation-delay: 0.6s;
+}
+.FormularioDeRastreo__Informacion--Movimientos--Movimiento:first-child::after {
+  background-color: var(--ColorVerde);
+}
+@media (width > 1920px) {
+  .FormularioDeRastreo {
+    min-height: fit-content;
+  }
+}
+@media (width <= 1050px) {
+  .FormularioDeRastreo__Informacion {
+    width: 100%;
+  }
+}
+@media (width <= 600px) {
+  .FormularioDeRastreo__Input {
+    width: 100%;
+  }
+  .FormularioDeRastreo__Input--SVG {
+    width: 50px;
+  }
+}

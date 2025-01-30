@@ -1,0 +1,71 @@
+.Main {
+  position: relative;
+  min-height: 100dvh;
+  padding-top: 85px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.Main__Circulo {
+  position: fixed;
+  border-radius: 50%;
+  opacity: 0;
+  animation: animacionAparacion 1s forwards;
+
+  z-index: -1;
+}
+.Main__Circulo.Uno {
+  width: 500px;
+  height: 500px;
+  top: -250px;
+  left: -250px;
+  background-color: var(--ColorAzul);
+}
+.Main__Circulo.Dos {
+  width: 300px;
+  height: 300px;
+  bottom: -150px;
+  right: -150px;
+  background-color: var(--ColorRojo);
+  animation-delay: 0.6s;
+}
+.Main__Circulo.Tres {
+  width: 400px;
+  height: 400px;
+  top: -200px;
+  right: -200px;
+  background-color: var(--ColorVerde);
+  animation-delay: 0.3s;
+}
+@media (width > 1920px) {
+  .Main {
+    width: 1920px;
+    margin: 0 auto;
+  }
+}
+@media (width <= 470px) {
+  .Main {
+    padding-top: 70px;
+  }
+}
+@media (width <= 800px) {
+  .Main__Circulo.Uno {
+    width: 350px;
+    height: 350px;
+    top: -175px;
+    left: -175px;
+  }
+  .Main__Circulo.Dos {
+    width: 250px;
+    height: 250px;
+    bottom: -125px;
+    right: -125px;
+  }
+  .Main__Circulo.Tres {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    right: -150px;
+  }
+}

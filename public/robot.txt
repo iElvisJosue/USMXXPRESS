@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /.astro/
+Disallow: /.vscode/
+Disallow: /node_modules/
+
+Sitemap: https://www.usmxxpress.com/sitemap.xml

@@ -1,0 +1,17 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Main from "../../components/Main.astro";
+import Footer from "../../components/Footer.astro";
+import FormularioDeRastreo from "../../components/RastrearPaquete/FormularioDeRastreo.astro";
+
+import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
+---
+
+<Layout Titulo={DiccionarioTitulos.tituloRastrearPaquete["en"]}>
+  <Navbar Idioma="en" />
+  <Main>
+    <FormularioDeRastreo Idioma="en" />
+    <Footer Idioma="en" />
+  </Main>
+</Layout>

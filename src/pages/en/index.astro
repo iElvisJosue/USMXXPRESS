@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Main from "../../components/Main.astro";
+import Principal from "../../components/index/Principal.astro";
+import Servicios from "../../components/index/Servicios.astro";
+import PorqueElegirnos from "../../components/index/PorqueElegirnos.astro";
+import Footer from "../../components/Footer.astro";
+
+import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
+---
+
+<Layout Titulo={DiccionarioTitulos.tituloPrincipal["en"]} Idioma="en">
+  <Navbar Idioma="en" />
+  <Main>
+    <Principal Idioma="en" />
+    <Servicios Idioma="en" />
+    <PorqueElegirnos Idioma="en" />
+    <Footer Idioma="en" />
+  </Main>
+</Layout>

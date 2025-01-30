@@ -1,0 +1,9 @@
+---
+export const prerender = false;
+
+const acceptLanguage = Astro.request?.headers.get("accept-language") || "";
+if (acceptLanguage.startsWith("es")) {
+  return Astro.redirect("/es");
+}
+return Astro.redirect("/en");
+---

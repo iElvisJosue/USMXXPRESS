@@ -1,0 +1,18 @@
+.SVG {
+  transition: var(--Transicion);
+  fill: var(--ColorAzulMarino);
+}
+.SVG.Blanco {
+  fill: var(--ColorBlanco);
+}
+.SVG.Negro {
+  fill: var(--ColorNegro);
+}
+.SVG.Azul {
+  fill: var(--ColorAzul);
+}
+/* @media (width <= 470px) {
+  .SVG {
+    width: 20px;
+  }
+} */

@@ -1,0 +1,20 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página principal en español -->
+  <url>
+    <loc>https://www.usmxxpress.com/es</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.usmxxpress.com/es" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.usmxxpress.com/en" />
+  </url>
+  <!-- Página principal en inglés -->
+  <url>
+    <loc>https://www.usmxxpress.com/en</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.usmxxpress.com/es" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.usmxxpress.com/en" />
+  </url>
+</urlset>
