@@ -1,9 +1,9 @@
 ---
-const { Idioma } = Astro.props;
 import { listaSVG } from "../helpers/SVGs";
 import { DiccionarioPreguntasFrecuentes } from "../translations/DiccionarioPreguntasFrecuentes";
 import { ListaDePreguntasFrecuentes } from "../helpers/ListaDePreguntasFrecuentes";
 
+const { Idioma, Preguntas } = Astro.props;
 // IMPORTAMOS LOS ESTILOS
 import "../styles/RastrearPaquete/PreguntasFrecuentes.css";
 ---
@@ -19,7 +19,7 @@ import "../styles/RastrearPaquete/PreguntasFrecuentes.css";
   </p>
   <ul class="PreguntasFrecuentes__Lista">
     {
-      ListaDePreguntasFrecuentes["RASTREO"].map(
+      ListaDePreguntasFrecuentes[Preguntas].map(
         ({
           SVG,
           AltIcono,

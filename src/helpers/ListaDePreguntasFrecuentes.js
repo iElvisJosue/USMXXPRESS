@@ -97,4 +97,64 @@ export const ListaDePreguntasFrecuentes = {
       },
     },
   ],
+  GENERALES: [
+    {
+      SVG: "FQAProhibidos",
+      AltIcono: {
+        es: "Icono sobre artículos prohibidos en envíos",
+        en: "Icon about prohibited shipping items",
+      },
+      TituloIcono: {
+        es: "Icono sobre artículos prohibidos en envíos",
+        en: "Icon about prohibited shipping items",
+      },
+      TituloPregunta: {
+        es: "¿Qué artículos no se pueden enviar?",
+        en: "What items can't be shipped?",
+      },
+      RespuestaPregunta: {
+        es: "No permitimos el envío de materiales peligrosos, sustancias ilegales, dinero en efectivo, productos perecederos sin empaque adecuado y otros artículos restringidos según la normativa local e internacional.",
+        en: "We do not allow the shipping of hazardous materials, illegal substances, cash, perishable goods without proper packaging, and other restricted items according to local and international regulations.",
+      },
+    },
+    {
+      SVG: "FQADomicilio",
+      AltIcono: {
+        es: "Icono sobre servicio de recolección a domicilio",
+        en: "Icon about home collection service",
+      },
+      TituloIcono: {
+        es: "Icono sobre servicio de recolección a domicilio",
+        en: "Icon about home collection service",
+      },
+      TituloPregunta: {
+        es: "¿Ofrecen servicio de recolección a domicilio?",
+        en: "Do you offer home collection service?",
+      },
+      RespuestaPregunta: {
+        es: "Sí, contamos con servicio de recolección en ciertas zonas. Puedes programarlo desde nuestra página web o llamando a nuestro servicio de atención al cliente.",
+        en: "Yes, we offer home collection service in certain areas. You can schedule it from our website or by calling our customer service.",
+      },
+    },
+    {
+      SVG: "FQAInternacional",
+      Box: "0 0 20 20",
+      AltIcono: {
+        es: "Icono sobre envíos internacionales",
+        en: "Icon about international shipping",
+      },
+      TituloIcono: {
+        es: "Icono sobre envíos internacionales",
+        en: "Icon about international shipping",
+      },
+      TituloPregunta: {
+        es: "¿Ofrecen envíos internacionales?",
+        en: "Do you offer international shipping?",
+      },
+      RespuestaPregunta: {
+        es: "Sí, realizamos envíos a varios países con diferentes opciones de tiempo de entrega y costos. Puedes consultar nuestra lista de destinos y tarifas en nuestra página web.",
+        en: "Yes, we offer international shipping to various countries with different delivery options and costs. You can check our list of destinations and rates on our website.",
+      },
+    },
+  ],
 };
