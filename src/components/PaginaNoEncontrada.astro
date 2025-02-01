@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import { imagenes } from "../helpers/Multimedia.astro";
+
+const { Idioma } = Astro.props;
+console.log(Idioma);
+
+import { DiccionarioPaginaNoEncontrada } from "../translations/DiccionarioPaginaNoEncontrada";
+// IMPORTAMOS LOS ESTILOS
+import "../styles/PaginaNoEncontrada.css";
+---
+
+<section class="PaginaNoEncontrada" aria-label="Página de USMX no encontrada">
+  <h1 class="USMX__Subtitulos Rojo">
+    {DiccionarioPaginaNoEncontrada[Idioma].Titulo}
+  </h1>
+
+  <Image
+    src={imagenes.PaginaNoEncontrada.Imagen}
+    alt="Página no encontrada en USMX"
+    class="PaginaNoEncontrada__Imagen"
+    loading="lazy"
+  />
+
+  <p class="PaginaNoEncontrada__Descripcion">
+    {DiccionarioPaginaNoEncontrada[Idioma].Descripcion}
+  </p>
+
+  <a
+    href="/"
+    class="PaginaNoEncontrada__Redireccion Bold"
+    aria-label="Volver a la página de inicio de USMX"
+  >
+    {DiccionarioPaginaNoEncontrada[Idioma].Boton}
+  </a>
+</section>

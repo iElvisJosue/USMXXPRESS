@@ -57,6 +57,9 @@ summary {
 .Azul {
   color: var(--ColorAzul);
 }
+.Blanco {
+  color: var(--ColorBlanco);
+}
 .Gris {
   color: var(--ColorGris);
 }

@@ -1,11 +1,17 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
+import Main from "../../components/Main.astro";
+import Footer from "../../components/Footer.astro";
+import FormularioDeContacto from "../../components/Contacto/FormularioDeContacto.astro";
 
 import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
 ---
 
-<Layout Titulo={DiccionarioTitulos.tituloContacto["en"]}>
+<Layout Idioma="en" Titulo={DiccionarioTitulos.tituloContacto["en"]}>
   <Navbar Idioma="en" />
-  <h1>CONTACT</h1>
+  <Main>
+    <FormularioDeContacto Idioma="en" />
+    <Footer Idioma="en" />
+  </Main>
 </Layout>

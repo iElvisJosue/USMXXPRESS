@@ -1,0 +1,236 @@
+---
+import { Image } from "astro:assets";
+
+import LetrasUSMX from "../LetrasUSMX.astro";
+
+import { listaSVG } from "../../helpers/SVGs";
+import { OpcionesDeContacto } from "../../helpers/OpcionesDeContacto";
+import { InformacionDeContacto } from "../../helpers/InformacionDeContacto";
+import { DiccionarioContacto } from "../../translations/DiccionarioContacto";
+import { EstadosDelCorreo } from "../../helpers/EstadosDelCorreo";
+
+const { Idioma } = Astro.props;
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Contacto/FormularioDeContacto.css";
+---
+
+<section class="Contacto" aria-label={DiccionarioContacto[Idioma].ariaLabel}>
+  <h1 class="USMX__Subtitulos">{DiccionarioContacto[Idioma].Titulo}</h1>
+
+  <h2 class="USMX__SemiSubtitulos">
+    {DiccionarioContacto[Idioma].SubtituloUno}<LetrasUSMX />{
+      DiccionarioContacto[Idioma].SubtituloDos
+    }
+  </h2>
+
+  <div class="FormularioDeContacto">
+    <div class="FormularioDeContacto__Informacion">
+      <h3 class="USMX__SemiSubtitulos Izquierda">
+        {DiccionarioContacto[Idioma].FormularioTitulo}
+      </h3>
+      <p class="USMX__Parrafos Izquierda">
+        {DiccionarioContacto[Idioma].FormularioTexto}
+      </p>
+      {
+        InformacionDeContacto[Idioma].map(
+          ({ SVG, Alt, Titulo, Texto, Href, AriaLabel }) => (
+            <div class="FormularioDeContacto__Informacion--Detalles">
+              <div
+                set:html={listaSVG({
+                  SVG,
+                  Alt,
+                  Titulo,
+                })}
+                aria-hidden="true"
+              />
+              <a
+                href={Href}
+                aria-label={AriaLabel}
+                class="USMX__Parrafos Izquierda Bold"
+              >
+                {Texto}
+              </a>
+            </div>
+          )
+        )
+      }
+    </div>
+    {
+      EstadosDelCorreo[Idioma].map(
+        ({ Estado, Imagen, AltImagen, ColorTexto, Texto }) => (
+          <div class="FormularioDeContacto__Form--Correo">
+            <figure
+              class={`FormularioDeContacto__Form--Correo--Imagen ${Estado}`}
+            >
+              <Image src={Imagen} alt={AltImagen} loading="eager" />
+              <figcaption class={`USMX__Parrafos Bold Azul ${ColorTexto}`}>
+                {Texto}
+              </figcaption>
+            </figure>
+          </div>
+        )
+      )
+    }
+    <form
+      aria-label={DiccionarioContacto[Idioma].FormularioAriaLabel}
+      class="FormularioDeContacto__Form"
+      id="FormularioDeContacto"
+    >
+      {
+        OpcionesDeContacto[Idioma].map(
+          ({
+            tipo,
+            textoLabel,
+            id,
+            name,
+            placeholder,
+            pattern,
+            maxlength,
+            textArea,
+            tamaño,
+          }) => (
+            <div class={`FormularioDeContacto__Form--Input ${tamaño}`}>
+              <label for={id} class="USMX__Small Izquierda Gris Bold">
+                {textoLabel}
+              </label>
+              {textArea ? (
+                <textarea
+                  id={id}
+                  name={name}
+                  required
+                  aria-required="true"
+                  class="FormularioDeContacto__Form--Input--Input Area"
+                  placeholder={placeholder}
+                  maxlength={maxlength}
+                />
+              ) : (
+                <input
+                  type={tipo}
+                  id={id}
+                  name={name}
+                  required
+                  aria-required="true"
+                  pattern={pattern}
+                  class="FormularioDeContacto__Form--Input--Input"
+                  placeholder={placeholder}
+                  maxlength={maxlength}
+                />
+              )}
+            </div>
+          )
+        )
+      }
+      <div class="FormularioDeContacto__Form--Boton">
+        <button
+          class="FormularioDeContacto__Form--Boton--Boton"
+          title={DiccionarioContacto[Idioma].FormulatioBotonTitulo}
+          >{DiccionarioContacto[Idioma].FormularioBoton}</button
+        >
+      </div>
+    </form>
+  </div>
+</section>
+
+<script client:load>
+  const FormularioDeContacto = document.getElementById("FormularioDeContacto");
+  const EstadosDelCorreo = document.querySelectorAll(
+    ".FormularioDeContacto__Form--Correo"
+  );
+  const SERVIDOR_PETICIONES = "https://www.usmxxpress.online:4000/api";
+  // const SERVIDOR_PETICIONES = "http://localhost:4000/api";
+  FormularioDeContacto.addEventListener("submit", async function (event) {
+    // EVITAMOS QUE SE RECARGUE LA PAGINA
+    event.preventDefault();
+    // MOSTRAMOS EL MODAL DE SUBIENDO
+    // ModalSubiendo.classList.add("Mostrar");
+    const ValoresDelFormulario = document.querySelectorAll(
+      ".FormularioDeContacto__Form--Input--Input"
+    );
+    // CREAMOS UN DICCIONARIO DE REGEX
+    const LISTA_REGEXS = {
+      REGEX_LETRAS_ACENTOS_ESPACIOS:
+        /^[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ].*[a-zA-Z0-9áéíóúüñÁÉÍÓÚÜÑ]$/,
+      REGEX_SOLO_NUMEROS: /^\d+$/,
+      REGEX_CORREO: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+    };
+
+    // OBTENEMOS LOS VALORES DEL FORMULARIO
+    const NOMBRE = ValoresDelFormulario[0].value;
+    const APELLIDOS = ValoresDelFormulario[1].value;
+    const CORREO = ValoresDelFormulario[2].value;
+    const TELEFONO = ValoresDelFormulario[3].value;
+    const MENSAJE = ValoresDelFormulario[4].value;
+
+    // ALMACENAMOS LOS VALORES EN UN OBJETO
+    const CONTENIDO_CORREO = {
+      NOMBRE,
+      APELLIDOS,
+      CORREO,
+      TELEFONO,
+      MENSAJE,
+    };
+
+    // CREAMOS UNA LISTA DE VALIDACIONES
+    const VALIDACIONES = [
+      {
+        campo: NOMBRE,
+        regex: LISTA_REGEXS.REGEX_LETRAS_ACENTOS_ESPACIOS,
+        mensaje: "El nombre solo puede contener letras y números",
+      },
+      {
+        campo: APELLIDOS,
+        regex: LISTA_REGEXS.REGEX_LETRAS_ACENTOS_ESPACIOS,
+        mensaje: "Los apellidos solo pueden contener letras y números",
+      },
+      {
+        campo: CORREO,
+        regex: LISTA_REGEXS.REGEX_CORREO,
+        mensaje: "El correo no es válido",
+      },
+      {
+        campo: TELEFONO,
+        regex: LISTA_REGEXS.REGEX_SOLO_NUMEROS,
+        mensaje: "El teléfono solo puede contener números",
+      },
+    ];
+
+    // RECORREMOS LA LISTA DE VALIDACIONES
+    for (const { campo, regex, mensaje } of VALIDACIONES) {
+      if (!regex.test(campo)) {
+        return alert(mensaje);
+      }
+    }
+    // OCULTAMOS EL FORMULARIO
+    FormularioDeContacto.classList.add("Ocultar");
+    // EL 0 ES "ENVIANDO", EL 1 ES "ENVIADO", EL 2 ES "ERROR"
+    EstadosDelCorreo[0].classList.add("Mostrar");
+
+    try {
+      const res = await fetch(`${SERVIDOR_PETICIONES}/sistema/EnviarCorreo`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(CONTENIDO_CORREO),
+      });
+      // OCULTAMOS EL MENSAJE DE ENVIANDO CORREO
+      EstadosDelCorreo[0].classList.remove("Mostrar");
+      if (res.status === 200) {
+        EstadosDelCorreo[1].classList.add("Mostrar");
+      } else {
+        EstadosDelCorreo[2].classList.add("Mostrar");
+      }
+    } catch (error) {
+      EstadosDelCorreo[0].classList.remove("Mostrar");
+      EstadosDelCorreo[2].classList.add("Mostrar");
+    } finally {
+      FormularioDeContacto.reset();
+      setTimeout(() => {
+        EstadosDelCorreo[1].classList.remove("Mostrar");
+        EstadosDelCorreo[2].classList.remove("Mostrar");
+        FormularioDeContacto.classList.remove("Ocultar");
+      }, 3000);
+    }
+  });
+</script>

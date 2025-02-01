@@ -4,6 +4,8 @@ import { imagenes } from "../helpers/Multimedia.astro";
 import { listaSVG } from "../helpers/SVGs";
 import { ListaRedesSociales } from "../helpers/ListaRedesSociales";
 import { DiccionarioFooter } from "../translations/DiccionarioFooter";
+import { InformacionGeneralUSMX } from "../helpers/InformacionGeneralUSMX";
+
 const { Idioma } = Astro.props;
 
 // IMPORTAMOS LOS ESTILOS
@@ -53,13 +55,13 @@ import "../styles/Footer.css";
     </p>
     <p class="USMX__Parrafos Izquierda Mensaje">
       {DiccionarioFooter[Idioma].SoporteParteCinco}<a
-        href="tel:123456789"
+        href=`tel:${InformacionGeneralUSMX.Telefono}`
         class="USMX__Hipervinculos"
         aria-label={DiccionarioFooter[Idioma].SoporteAriaLabelLlamar}
         >{DiccionarioFooter[Idioma].SoporteNumero}</a
       >
       {DiccionarioFooter[Idioma].SoporteParteSeis}<a
-        href="mailto:correo@example.com"
+        href=`mailto:${InformacionGeneralUSMX.CorreoElectronico}`
         class="USMX__Hipervinculos"
         aria-label={DiccionarioFooter[Idioma].SoporteAriaLabelCorreo}
         >{DiccionarioFooter[Idioma].SoporteCorreo}</a
@@ -90,7 +92,12 @@ import "../styles/Footer.css";
         ListaRedesSociales[Idioma].map(
           ({ ArialLabel, Titulo, URL, SVG, Alt, Tamaño }) => (
             <li class="Footer__RedesSociales--Detalles--Item" role="listitem">
-              <a href={URL} aria-label={ArialLabel} title={Titulo}>
+              <a
+                href={URL}
+                aria-label={ArialLabel}
+                title={Titulo}
+                target="_blank"
+              >
                 <div
                   set:html={listaSVG({
                     SVG,

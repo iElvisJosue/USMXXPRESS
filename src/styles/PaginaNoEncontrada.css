@@ -1,0 +1,32 @@
+.PaginaNoEncontrada {
+  min-height: calc(100vh - 85px);
+  overflow: hidden;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.PaginaNoEncontrada__Imagen {
+  height: auto;
+}
+.PaginaNoEncontrada__Redireccion {
+  color: var(--ColorAzulMarino);
+}
+@media (width > 1920px) {
+  .PaginaNoEncontrada {
+    min-height: fit-content;
+  }
+}
+@media (width <= 800px) {
+  .PaginaNoEncontrada__Imagen {
+    width: 400px;
+  }
+}
+@media (width <= 500px) {
+  .PaginaNoEncontrada__Imagen {
+    width: 300px;
+  }
+}

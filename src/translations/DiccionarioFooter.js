@@ -1,3 +1,5 @@
+import { InformacionGeneralUSMX } from "../helpers/InformacionGeneralUSMX";
+
 export const DiccionarioFooter = {
   es: {
     SloganParteUno: "En USMX",
@@ -16,10 +18,10 @@ export const DiccionarioFooter = {
     SoporteParteCinco:
       "También puedes enviar un mensaje de texto a nuestro equipo de soporte al ",
     SoporteAriaLabelLlamar: "Llamar a USMX Express",
-    SoporteNumero: "(123) 456-7890",
+    SoporteNumero: InformacionGeneralUSMX.Telefono,
     SoporteParteSeis: "o un correo a ",
     SoporteAriaLabelCorreo: "Enviar correo a USMX Express",
-    SoporteCorreo: "correo@example.com",
+    SoporteCorreo: InformacionGeneralUSMX.CorreoElectronico,
     LegalesAriaLabelCondicionesDeUso: "Condiciones de uso de USMX Express",
     LegalesParteUno: "Condiciones de uso",
     LegalesAriaLabelPoliticasDePrivacidad:
@@ -44,10 +46,10 @@ export const DiccionarioFooter = {
     SoporteParteCinco:
       "You can also send a text message to our support team at ",
     SoporteAriaLabelLlamar: "Call USMX Express",
-    SoporteNumero: "(123) 456-7890",
+    SoporteNumero: InformacionGeneralUSMX.Telefono,
     SoporteParteSeis: "or an email to ",
     SoporteAriaLabelCorreo: "Send email to USMX Express",
-    SoporteCorreo: "email@example.com",
+    SoporteCorreo: InformacionGeneralUSMX.CorreoElectronico,
     LegalesAriaLabelCondicionesDeUso: "USMX Express Terms of Use",
     LegalesParteUno: "Terms of Use",
     LegalesAriaLabelPoliticasDePrivacidad: "USMX Express Privacy Policy",

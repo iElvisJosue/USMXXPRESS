@@ -58,11 +58,7 @@ import "../../styles/RastrearPaquete/FormularioDeRastreo.css";
   );
   // OBTENEMOS EL INPUT DE BUSQUEDA
   const InputDeBusqueda = document.getElementById("numero_de_guia");
-  let IdiomaActual = "es";
-  // OBTENEMOS LA URL COMPLETA
-  if (window.location.href.includes("/en/")) {
-    IdiomaActual = "en";
-  }
+  const IdiomaActual = document.documentElement.lang || "es";
   // CREAMOS UN DICCIONARIO DE TEXTO POR IDIOMA
   const DiccionarioDeTextos = {
     BuscandoInformacion: {

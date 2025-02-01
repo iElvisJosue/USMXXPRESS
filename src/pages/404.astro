@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Main from "../components/Main.astro";
+import PaginaNoEncontrada from "../components/PaginaNoEncontrada.astro";
+import Footer from "../components/Footer.astro";
+
+const currentUrl = Astro.url.href;
+
+let Idioma = "es";
+if (currentUrl.includes("/en/")) {
+  Idioma = "en";
+}
+
+import { DiccionarioTitulos } from "../translations/DiccionarioTitulos";
+---
+
+<Layout Idioma={Idioma} Titulo={DiccionarioTitulos.tituloPrincipal[{ Idioma }]}>
+  <Navbar Idioma={Idioma} />
+  <Main>
+    <PaginaNoEncontrada Idioma={Idioma} />
+    <Footer Idioma={Idioma} />
+  </Main>
+</Layout>
