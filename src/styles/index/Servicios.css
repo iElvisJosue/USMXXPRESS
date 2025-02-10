@@ -1,12 +1,14 @@
 .Servicios {
   padding: 20px;
-  background-color: var(--ColorBlanco);
 
   display: flex;
   flex-direction: column;
   gap: 10px;
 
   z-index: 1;
+}
+.Servicios.Bg {
+  background-color: var(--ColorBlanco);
 }
 .Servicios__Detalles {
   display: grid;
@@ -69,6 +71,9 @@
   animation: animacionAparacion 1s forwards;
   /* opacity: 0; */
   animation-delay: 0.2s;
+}
+.Servicios__Detalles--Item--Imagen.Bg {
+  background: var(--ColorBlanco);
 }
 .Servicios__Detalles--Item.ImagenServicio .Servicios__Detalles--Item--Imagen {
   width: 650px;

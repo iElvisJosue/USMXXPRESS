@@ -1,11 +1,21 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
+import Main from "../../components/Main.astro";
+import Footer from "../../components/Footer.astro";
+import Presentacion from "../../components/Nosotros/Presentacion.astro";
+import Filosofia from "../../components/Nosotros/Filosofia.astro";
+import PreguntasFrecuentes from "../../components/PreguntasFrecuentes.astro";
 
 import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
 ---
 
-<Layout Titulo={DiccionarioTitulos.tituloNosotros["en"]}>
+<Layout Idioma="en" Titulo={DiccionarioTitulos.tituloNosotros["en"]}>
   <Navbar Idioma="en" />
-  <h1>ABOUT US</h1>
+  <Main>
+    <Presentacion Idioma="en" />
+    <Filosofia Idioma="en" />
+    <PreguntasFrecuentes Idioma="en" Preguntas="NOSOTROS" />
+    <Footer Idioma="en" />
+  </Main>
 </Layout>

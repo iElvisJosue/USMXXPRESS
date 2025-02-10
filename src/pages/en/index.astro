@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Main from "../../components/Main.astro";
 import Principal from "../../components/index/Principal.astro";
-import Servicios from "../../components/index/Servicios.astro";
+import NuestrosServicios from "../../components/index/NuestrosServicios.astro";
 import PorqueElegirnos from "../../components/index/PorqueElegirnos.astro";
 import PreguntasFrecuentes from "../../components/PreguntasFrecuentes.astro";
 import Footer from "../../components/Footer.astro";
@@ -15,7 +15,7 @@ import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
   <Navbar Idioma="en" />
   <Main>
     <Principal Idioma="en" />
-    <Servicios Idioma="en" />
+    <NuestrosServicios Idioma="en" BgContenido={true} />
     <PorqueElegirnos Idioma="en" />
     <PreguntasFrecuentes Idioma="en" Preguntas="GENERALES" />
     <Footer Idioma="en" />

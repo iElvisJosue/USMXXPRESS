@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import { ListaDeFilosofia } from "../../helpers/ListaFilosofia.astro";
+import { DiccionarioFilosofia } from "../../translations/DiccionarioFilosofia";
+import LetrasUSMX from "../LetrasUSMX.astro";
+import Divisor from "../Divisor.astro";
+
+const { Idioma } = Astro.props;
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Nosotros/Filosofia.css";
+---
+
+<section class="Filosofia">
+  <Divisor />
+  <h1 class="USMX__Subtitulos">
+    {DiccionarioFilosofia[Idioma].Titulo}
+  </h1>
+  <p class="USMX__Parrafos">
+    {DiccionarioFilosofia[Idioma].DescripcionUno}
+    <LetrasUSMX />{DiccionarioFilosofia[Idioma].DescripcionDos}<br />
+    {DiccionarioFilosofia[Idioma].DescripcionTres}
+  </p>
+  <ul class="Filosofia__Detalles">
+    {
+      ListaDeFilosofia[Idioma].map(
+        ({
+          srcImg,
+          altImg,
+          titulo,
+          texto,
+          hrefAncor,
+          tituloAncor,
+          textoAncor,
+        }) => (
+          <li class="Filosofia__Detalles--Item">
+            <Image
+              src={srcImg}
+              loading="lazy"
+              alt={altImg}
+              class="Filosofia__Detalles--Item--Imagen"
+            />
+            <h3 class="USMX__SemiSubtitulos">{titulo}</h3>
+            <p class="USMX__Parrafos">{texto}</p>
+            {hrefAncor && (
+              <a
+                href={hrefAncor}
+                class="Filosofia__Boton"
+                title={tituloAncor}
+                aria-label={tituloAncor}
+              >
+                {textoAncor}
+              </a>
+            )}
+          </li>
+        )
+      )
+    }
+  </ul>
+</section>

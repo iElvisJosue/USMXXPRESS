@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import { ListaDeEcosistema } from "../../helpers/ListaEcosistema.astro";
+import { DiccionarioEcosistema } from "../../translations/DiccionarioEcosistema";
+import LetrasUSMX from "../LetrasUSMX.astro";
+import Divisor from "../Divisor.astro";
+
+const { Idioma } = Astro.props;
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Nosotros/Ecosistema.css";
+---
+
+<section class="Ecosistema">
+  <Divisor />
+  <h1 class="USMX__Subtitulos">
+    {DiccionarioEcosistema[Idioma].Titulo}
+  </h1>
+  <p class="USMX__Parrafos">
+    {DiccionarioEcosistema[Idioma].DescripcionUno}
+    <LetrasUSMX />{DiccionarioEcosistema[Idioma].DescripcionDos}
+  </p>
+  <ul class="Ecosistema__Detalles">
+    {
+      ListaDeEcosistema[Idioma].map(
+        ({
+          srcImg,
+          altImg,
+          titulo,
+          texto,
+          hrefAncor,
+          tituloAncor,
+          textoAncor,
+        }) => (
+          <li class="Ecosistema__Detalles--Item">
+            <Image
+              src={srcImg}
+              loading="lazy"
+              alt={altImg}
+              class="Ecosistema__Detalles--Item--Imagen"
+            />
+            <h3 class="USMX__SemiSubtitulos">{titulo}</h3>
+            <p class="USMX__Parrafos">{texto}</p>
+            {hrefAncor && (
+              <a
+                href={hrefAncor}
+                class="Ecosistema__Boton"
+                title={tituloAncor}
+                aria-label={tituloAncor}
+              >
+                {textoAncor}
+              </a>
+            )}
+          </li>
+        )
+      )
+    }
+  </ul>
+</section>

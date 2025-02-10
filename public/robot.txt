@@ -1,6 +1,26 @@
+# Bloquear carpetas y archivos no relevantes para la indexación
 User-agent: *
-Disallow: /.astro/
-Disallow: /.vscode/
-Disallow: /node_modules/
+Disallow: /.astro/               # Bloqueo de la carpeta .astro (generalmente usada en proyectos de desarrollo)
+Disallow: /.vscode/              # Bloqueo de la carpeta de configuración de Visual Studio Code
+Disallow: /node_modules/         # Bloqueo de la carpeta de dependencias de Node.js
+Disallow: /tmp/                  # Bloqueo de la carpeta de archivos temporales
+Disallow: /backup/               # Bloqueo de la carpeta de backups
+Disallow: /admin/                # Bloqueo de la carpeta de administración, si aplica
 
+# Permitir el acceso a los recursos importantes para el SEO
+Allow: /src/styles/              # Permitir el acceso a los archivos de estilos CSS ubicados en src/styles/
+Allow: /src/styles/**/*          # Permitir el acceso a todas las subcarpetas y archivos dentro de src/styles/
+
+# Permitir acceso a imágenes y recursos estáticos necesarios para la indexación
+Allow: /public/                  # Permitir el acceso a las imágenes y archivos estáticos en la carpeta public/
+Allow: /public/**/*              # Permitir el acceso a todas las subcarpetas y archivos dentro de public/
+
+Allow: /src/assets/              # Permitir el acceso a imágenes y archivos estáticos en src/assets/
+Allow: /src/assets/**/*          # Permitir el acceso a todas las subcarpetas y archivos dentro de src/assets/
+
+# Sitemap: Especificación de la ubicación del sitemap para mejorar la indexación
 Sitemap: https://www.usmxxpress.com/sitemap.xml
+
+# Evitar el acceso a archivos de configuración, logs o archivos sensibles
+Disallow: /config/               # Evitar el acceso a la carpeta de configuración
+Disallow: /logs/                 # Evitar el acceso a los archivos de log

@@ -1,0 +1,20 @@
+.Presentacion {
+  min-height: calc(100dvh - 85px);
+  overflow: hidden;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.Presentacion__LogoUSMX {
+  width: 300px;
+  height: 300px;
+}
+@media (width > 1920px) {
+  .Presentacion {
+    min-height: fit-content;
+  }
+}

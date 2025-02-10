@@ -7,7 +7,7 @@ export const DiccionarioPorqueElegirnos = {
   },
   en: {
     Titulo: "Why choose USMX for your package shipments?",
-    DescripcionUno: "In",
+    DescripcionUno: "At",
     DescripcionDos:
       ", we are experts in sending packages from the United States to Mexico, offering speed, security and confidence in each delivery.",
   },

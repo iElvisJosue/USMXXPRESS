@@ -4,13 +4,16 @@ import Divisor from "../Divisor.astro";
 import { ListaDeServiciosActuales } from "../../helpers/ListaDeServicios.astro";
 import {DiccionarioServicios} from "../../translations/DiccionarioServicios";
 
-const { Idioma } = Astro.props;
+const { Idioma, BgContenido } = Astro.props;
+
+const ClaseServicios = BgContenido ? "Servicios Bg" : "Servicios";
+const ClaseItemImg = BgContenido ? "Servicios__Detalles--Item--Imagen" : "Servicios__Detalles--Item--Imagen Bg";
 
 // IMPORTAMOS LOS ESTILOS
 import "../../styles/index/Servicios.css";
 ---
 
-<section class="Servicios">
+<section class={ClaseServicios}>
   <Divisor />
   <h1 class="USMX__Subtitulos">{DiccionarioServicios.Titulo[Idioma]}</h1>
   <p class="USMX__Parrafos">
@@ -34,7 +37,7 @@ import "../../styles/index/Servicios.css";
             src={Imagen}
             loading="lazy"
             alt={AltImagen}
-            class="Servicios__Detalles--Item--Imagen"
+            class={ClaseItemImg}
             />
             {
               !EsImagenPrincipal && (

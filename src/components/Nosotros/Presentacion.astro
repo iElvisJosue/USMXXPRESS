@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+import { imagenes } from "../../helpers/Multimedia.astro";
+import { DiccionarioPresentacion } from "../../translations/DiccionarioPresentacion";
+
+const { Idioma } = Astro.props;
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Nosotros/Presentacion.css";
+---
+
+<header class="Presentacion">
+  <h1 class="USMX__Subtitulos">{DiccionarioPresentacion.Titulo[Idioma]}</h1>
+  <Image
+    src={imagenes.USMX.Imagen}
+    alt={DiccionarioPresentacion.ImagenAlt[Idioma]}
+    class="Presentacion__LogoUSMX"
+    loading="eager"
+    format="webp"
+  />
+  <h2 class="USMX__Parrafos">
+    {DiccionarioPresentacion.SubtituloParteUno[Idioma]}
+    <br />
+    {DiccionarioPresentacion.SubtituloParteDos[Idioma]}
+  </h2>
+</header>
