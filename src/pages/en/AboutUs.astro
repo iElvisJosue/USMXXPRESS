@@ -10,7 +10,11 @@ import PreguntasFrecuentes from "../../components/PreguntasFrecuentes.astro";
 import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
 ---
 
-<Layout Idioma="en" Titulo={DiccionarioTitulos.tituloNosotros["en"]}>
+<Layout
+  Idioma="en"
+  Encabezado="NOSOTROS"
+  Titulo={DiccionarioTitulos.tituloNosotros["en"]}
+>
   <Navbar Idioma="en" />
   <Main>
     <Presentacion Idioma="en" />

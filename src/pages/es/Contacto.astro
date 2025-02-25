@@ -8,7 +8,11 @@ import FormularioDeContacto from "../../components/Contacto/FormularioDeContacto
 import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
 ---
 
-<Layout Idioma="es" Titulo={DiccionarioTitulos.tituloContacto["es"]}>
+<Layout
+  Idioma="es"
+  Encabezado="CONTACTO"
+  Titulo={DiccionarioTitulos.tituloContacto["es"]}
+>
   <Navbar Idioma="es" />
   <Main>
     <FormularioDeContacto Idioma="es" />

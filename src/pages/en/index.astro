@@ -11,7 +11,11 @@ import Footer from "../../components/Footer.astro";
 import { DiccionarioTitulos } from "../../translations/DiccionarioTitulos";
 ---
 
-<Layout Titulo={DiccionarioTitulos.tituloPrincipal["en"]} Idioma="en">
+<Layout
+  Idioma="en"
+  Encabezado="INDEX"
+  Titulo={DiccionarioTitulos.tituloPrincipal["en"]}
+>
   <Navbar Idioma="en" />
   <Main>
     <Principal Idioma="en" />

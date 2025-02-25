@@ -1,7 +1,7 @@
 ---
 import { DiccionarioHead } from "../translations/DiccionarioHead";
 
-const { Idioma, Titulo } = Astro.props;
+const { Idioma, Encabezado, Titulo } = Astro.props;
 ---
 
 <head>
@@ -11,26 +11,41 @@ const { Idioma, Titulo } = Astro.props;
   <meta name="generator" content={Astro.generator} />
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content={DiccionarioHead.tituloTwitter[Idioma]} />
+  <meta
+    name="twitter:title"
+    content={DiccionarioHead[Encabezado].tituloTwitter[Idioma]}
+  />
   <meta
     name="twitter:description"
-    content={DiccionarioHead.descripcionTwitter[Idioma]}
+    content={DiccionarioHead[Encabezado].descripcionTwitter[Idioma]}
   />
   <meta name="twitter:image" content="https://i.imgur.com/IjUTItF.jpeg" />
   <!-- Open Graph (para Facebook, LinkedIn, etc.) -->
-  <meta property="og:title" content={DiccionarioHead.ogTitulo[Idioma]} />
+  <meta
+    property="og:title"
+    content={DiccionarioHead[Encabezado].ogTitulo[Idioma]}
+  />
   <meta
     property="og:description"
-    content={DiccionarioHead.ogDescripcion[Idioma]}
+    content={DiccionarioHead[Encabezado].ogDescripcion[Idioma]}
   />
   <meta property="og:image" content="https://i.imgur.com/pSOVGyO.png" />
-  <meta property="og:image:alt" content={DiccionarioHead.ogImagenAlt[Idioma]} />
-  <meta property="og:site_name" content="USMX" />
+  <meta
+    property="og:image:alt"
+    content={DiccionarioHead[Encabezado].ogImagenAlt[Idioma]}
+  />
+  <meta property="og:site_name" content="USMXXPRESS" />
   <meta property="og:url" content="https://www.usmxxpress.com/" />
   <meta property="og:type" content="website" />
   <!-- Tags SEO -->
-  <meta name="description" content={DiccionarioHead.seoDescripcion[Idioma]} />
-  <meta name="keywords" content={DiccionarioHead.seoPalabrasClave[Idioma]} />
+  <meta
+    name="description"
+    content={DiccionarioHead[Encabezado].seoDescripcion[Idioma]}
+  />
+  <meta
+    name="keywords"
+    content={DiccionarioHead[Encabezado].seoPalabrasClave[Idioma]}
+  />
   <title>{Titulo}</title>
   <!-- Tags Hreflang -->
   <link rel="alternate" hreflang="es" href="https://www.usmxxpress.com/es" />
