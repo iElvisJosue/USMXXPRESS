@@ -13,26 +13,26 @@ const { Idioma, Encabezado, Titulo } = Astro.props;
   <meta name="twitter:card" content="summary" />
   <meta
     name="twitter:title"
-    content={DiccionarioHead[Encabezado].tituloTwitter[Idioma]}
+    content={DiccionarioHead[Encabezado]?.tituloTwitter[Idioma]}
   />
   <meta
     name="twitter:description"
-    content={DiccionarioHead[Encabezado].descripcionTwitter[Idioma]}
+    content={DiccionarioHead[Encabezado]?.descripcionTwitter[Idioma]}
   />
   <meta name="twitter:image" content="https://i.imgur.com/IjUTItF.jpeg" />
   <!-- Open Graph (para Facebook, LinkedIn, etc.) -->
   <meta
     property="og:title"
-    content={DiccionarioHead[Encabezado].ogTitulo[Idioma]}
+    content={DiccionarioHead[Encabezado]?.ogTitulo[Idioma]}
   />
   <meta
     property="og:description"
-    content={DiccionarioHead[Encabezado].ogDescripcion[Idioma]}
+    content={DiccionarioHead[Encabezado]?.ogDescripcion[Idioma]}
   />
   <meta property="og:image" content="https://i.imgur.com/pSOVGyO.png" />
   <meta
     property="og:image:alt"
-    content={DiccionarioHead[Encabezado].ogImagenAlt[Idioma]}
+    content={DiccionarioHead[Encabezado]?.ogImagenAlt[Idioma]}
   />
   <meta property="og:site_name" content="USMXXPRESS" />
   <meta property="og:url" content="https://www.usmxxpress.com/" />
@@ -40,11 +40,11 @@ const { Idioma, Encabezado, Titulo } = Astro.props;
   <!-- Tags SEO -->
   <meta
     name="description"
-    content={DiccionarioHead[Encabezado].seoDescripcion[Idioma]}
+    content={DiccionarioHead[Encabezado]?.seoDescripcion[Idioma]}
   />
   <meta
     name="keywords"
-    content={DiccionarioHead[Encabezado].seoPalabrasClave[Idioma]}
+    content={DiccionarioHead[Encabezado]?.seoPalabrasClave[Idioma]}
   />
   <title>{Titulo}</title>
   <!-- Tags Hreflang -->
