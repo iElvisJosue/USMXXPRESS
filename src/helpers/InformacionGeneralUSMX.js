@@ -1,6 +1,6 @@
 export const InformacionGeneralUSMX = {
   Telefono: "7088826727",
-  CorreoElectronico: "usmxexpress@gmail.com",
+  CorreoElectronico: "usmxxpress@gmail.com",
   Ubicacion: "Illinois, Estados Unidos",
   Facebook: "https://www.facebook.com/USMX",
   Instagram: "https://www.instagram.com/USMX",
