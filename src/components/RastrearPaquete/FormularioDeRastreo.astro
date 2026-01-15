@@ -2,7 +2,10 @@
 import { Image } from "astro:assets";
 import { listaSVG } from "../../helpers/SVGs";
 import { imagenes } from "../../helpers/Multimedia.astro";
-import { DiccionarioRastrearPaquete } from "../../translations/DiccionarioRastrearPaquete";
+import {
+  DiccionarioModalRastreoAsignado,
+  DiccionarioRastrearPaquete,
+} from "../../translations/DiccionarioRastrearPaquete";
 
 const { Idioma } = Astro.props;
 
@@ -10,6 +13,42 @@ const { Idioma } = Astro.props;
 import "../../styles/RastrearPaquete/FormularioDeRastreo.css";
 ---
 
+<div class="ModalRastreoAsignado" id="ModalRastreoAsignado">
+  <div class="ModalRastreoAsignado__Contenedor" id="ContenedorModal">
+    <button
+      class="ModalRastreoAsignado__Contenedor--Cerrar"
+      id="BotonCerrarModal"
+      set:html={listaSVG({ SVG: "CERRAR", Tamaño: "16", Box: "0 0 16 16" })}
+    />
+    <Image
+      src={imagenes.BuenasNoticias.Imagen}
+      alt={DiccionarioModalRastreoAsignado.AltImgEnPaqueteria[Idioma]}
+      class="ModalRastreoAsignado__Contenedor--Imagen"
+      loading="eager"
+    />
+    <p class="ModalRastreoAsignado__Contenedor--Titulo">
+      {DiccionarioModalRastreoAsignado.Titulo[Idioma]}
+    </p>
+    <p class="ModalRastreoAsignado__Contenedor--Parrafo">
+      {DiccionarioModalRastreoAsignado.ParrafoUno[Idioma]}
+    </p>
+    <p class="ModalRastreoAsignado__Contenedor--Parrafo">
+      {DiccionarioModalRastreoAsignado.ParrafoDos[Idioma]}
+      <b id="PaqueteriaParrafo">Paquetería.</b>
+      {DiccionarioModalRastreoAsignado.ParrafoTres[Idioma]}
+    </p>
+    <p class="ModalRastreoAsignado__Contenedor--Parrafo">
+      {DiccionarioModalRastreoAsignado.NumeroRastreo[Idioma]}
+      <b id="NumeroDeRastreo">000000</b>
+    </p>
+    <section class="ModalRastreoAsignado__Contenedor--Botones">
+      <a href="#" target="_blank" id="BotonSeguimiento">
+        {DiccionarioModalRastreoAsignado.BotonSeguimiento[Idioma]}
+        <span id="PaqueteriaBoton">Paquetería</span>
+      </a>
+    </section>
+  </div>
+</div>
 <section
   class="FormularioDeRastreo"
   aria-label={DiccionarioRastrearPaquete.FormularioAriaLabel[Idioma]}
@@ -51,15 +90,16 @@ import "../../styles/RastrearPaquete/FormularioDeRastreo.css";
 
 <script client:load>
   const SERVIDOR_PETICIONES = "https://www.usmxxpress.online/api/web";
-  // const SERVIDOR_PETICIONES = "http://localhost:4000/api";
+  // const SERVIDOR_PETICIONES = "http://localhost:4000/api/web";
   // OBTENEMOS EL CONTENEDOR DE LA INFORMACIÓN DE UN PAQUETE
   const ContenedorDeInformacion = document.querySelector(
     ".FormularioDeRastreo__Informacion"
   );
-  // OBTENEMOS EL INPUT DE BUSQUEDA
-  const InputDeBusqueda = document.getElementById("numero_de_guia");
+  /** Obtenemos el idioma del navegador **/
   const IdiomaActual = document.documentElement.lang || "es";
-  // CREAMOS UN DICCIONARIO DE TEXTO POR IDIOMA
+  /** Obtenemos el input de busqueda **/
+  const InputDeBusqueda = document.getElementById("numero_de_guia");
+  /** Creamos un diccionario de textos **/
   const DiccionarioDeTextos = {
     BuscandoInformacion: {
       es: "Buscando información de tu paquete...",
@@ -106,12 +146,27 @@ import "../../styles/RastrearPaquete/FormularioDeRastreo.css";
       en: "Package search error illustration",
     },
   };
-
+  /** Agregamos el evento de teclado al presionar la tecla enter **/
   InputDeBusqueda.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && InputDeBusqueda.value) {
       BuscarInformacionDeUnPaquete();
     }
   });
+  /** Obtenemos el modal de rastreo asignado **/
+  const ModalRastreoAsignado = document.getElementById("ModalRastreoAsignado");
+  ModalRastreoAsignado.addEventListener("click", () => {
+    CerrarModalRastreoAsignado();
+  });
+  const ContenedorModal = document.getElementById("ContenedorModal");
+  ContenedorModal.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+  /** Obtenemos el botón que cerrará el modal de rastreo asignado **/
+  const BtnCerrarModal = document.getElementById("BotonCerrarModal");
+  BtnCerrarModal.addEventListener("click", () => {
+    CerrarModalRastreoAsignado();
+  });
+
   const BuscarInformacionDeUnPaquete = () => {
     if (!InputDeBusqueda.value) return;
     MostrarMensajeDeCarga();
@@ -132,12 +187,48 @@ import "../../styles/RastrearPaquete/FormularioDeRastreo.css";
       const data = await res.json();
       if (data.InformacionGeneral) {
         MostrarInformacionDeUnPaquete(data);
+        /** Si ya hay un número de rastreo, mostramos un modal **/
+        const { RastreoPedido } = data.InformacionGeneral;
+        if (RastreoPedido) {
+          const { NombrePaqueteria, RastreoPedido } = data.InformacionGeneral;
+          MostrarModalDeRastreo({
+            Paqueteria: NombrePaqueteria,
+            Rastreo: RastreoPedido,
+          });
+        }
       } else {
         MostrarInformacionNoEncontrada();
       }
     } catch (error) {
       MostrarMensajeDeError();
     }
+  };
+  const MostrarModalDeRastreo = ({ Paqueteria, Rastreo }) => {
+    /** Obtenemos el url de la paqueteria **/
+    const URLPaqueteria = ObtenerUrlPaqueteria({ Paqueteria, Rastreo });
+    /** Primero cambiamos los textos **/
+    const PaqueteriaParrafo = document.getElementById("PaqueteriaParrafo");
+    const NumeroDeRastreo = document.getElementById("NumeroDeRastreo");
+    const PaqueteriaBoton = document.getElementById("PaqueteriaBoton");
+    const BotonSeguimiento = document.getElementById("BotonSeguimiento");
+    PaqueteriaParrafo.textContent = `${Paqueteria}.`;
+    NumeroDeRastreo.textContent = `#${Rastreo}`;
+    PaqueteriaBoton.textContent = Paqueteria;
+    BotonSeguimiento.href = URLPaqueteria || "#";
+    /** Una vez que cambiamos los textos, mostramos el modal **/
+    ModalRastreoAsignado.classList.add("Activo");
+  };
+  const ObtenerUrlPaqueteria = ({ Paqueteria, Rastreo }) => {
+    /** Creamos una lista de URLS para cada paqueteria **/
+    const UrlsPaqueterias = {
+      FedEx: `https://www.fedex.com/fedextrack/?trknbr=${Rastreo}`,
+      Estafeta: `https://www.estafeta.com/en/rastrear-envio?rastreo=true`,
+      Paquetexpress: `https://www.paquetexpress.com.mx/rastreo/${Rastreo}`,
+    };
+    return UrlsPaqueterias[Paqueteria];
+  };
+  const CerrarModalRastreoAsignado = () => {
+    ModalRastreoAsignado.classList.remove("Activo");
   };
   const MostrarMensajeDeCarga = () => {
     ContenedorDeInformacion.innerHTML = `
@@ -242,11 +333,11 @@ import "../../styles/RastrearPaquete/FormularioDeRastreo.css";
     // Formatear la fecha
     return Formateador.format(NuevaFecha);
   };
-  // OBTENEMOS LOS PARAMETROS DE LA URL
+  /** Obtenemos los parámetros de la URL **/
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
   const { GuiaPedido, OrderGuide } = params;
-  // SI TENEMOS UNA GUÍA ENVIADA POR PARÁMETRO, BUSCAMOS EL PAQUETE
+  /** Si tenemos un parámetro, buscamos el paquete **/
   if (GuiaPedido || OrderGuide) {
     BuscarPedidosPorNumeroDeGuia(GuiaPedido || OrderGuide);
   }

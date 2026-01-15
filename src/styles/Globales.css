@@ -24,7 +24,6 @@
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
   color: var(--ColorAzulMarino);
-  transition: var(--Transicion);
 }
 ::-webkit-scrollbar {
   width: 12px; /* Ancho del scroll */
