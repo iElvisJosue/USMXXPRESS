@@ -42,8 +42,8 @@ export const DiccionarioModalRastreoAsignado = {
     en: "Your shipment is now in the hands of the courier.",
   },
   ParrafoDos: {
-    es: "A partir de este momento, el seguimiento del pedido se realiza en la paquetería.",
-    en: "From this point on, order tracking is handled by the courier.",
+    es: "A partir de este momento, el seguimiento del pedido se realiza en la paquetería",
+    en: "From this point on, order tracking is handled by the courier",
   },
   ParrafoTres: {
     es: "Cualquier duda, no dudes en contactarnos.",
